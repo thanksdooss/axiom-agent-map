@@ -1,0 +1,80 @@
+# 엑시옴 온톨로지 역량 질문(CQ) — 이 온톨로지가 답해야 하는 질문을 SPARQL로 적은 것.
+# tools/check_ontology.py가 "#### CQ" 줄로 나눠 axiom-ontology.ttl + examples.ttl 위에서 실행한다.
+
+#### CQ1 서로 다른 부서가 만든 Agent 중, 작업 유형·입력 데이터·산출물이 모두 같은 기능 쌍은?
+PREFIX ax:   <https://github.com/thanksdooss/axiom-agent-map/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?agentA ?deptA ?agentB ?deptB ?task ?input
+WHERE {
+  ?a ax:agentName ?agentA ; ax:developedBy ?da ; ax:hasCapability ?ca .
+  ?b ax:agentName ?agentB ; ax:developedBy ?db ; ax:hasCapability ?cb .
+  FILTER (STR(?a) < STR(?b) && ?da != ?db)
+  FILTER NOT EXISTS { ?x ax:lifecycle "등록 검토 중" . FILTER (?x IN (?a, ?b)) }
+  ?ca ax:performsTask ?t ; ax:consumes ?i ; ax:produces ?o .
+  ?cb ax:performsTask ?t ; ax:consumes ?i ; ax:produces ?o .
+  ?da skos:prefLabel ?deptA . ?db skos:prefLabel ?deptB .
+  ?t skos:prefLabel ?task . ?i skos:prefLabel ?input .
+}
+ORDER BY ?agentA ?agentB ?task
+
+#### CQ2 같은 작업 유형을 몇 개 부서가 각자 만들었나? (2개 부서 이상만)
+PREFIX ax:   <https://github.com/thanksdooss/axiom-agent-map/ontology#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?task (COUNT(DISTINCT ?d) AS ?departments) (COUNT(DISTINCT ?a) AS ?agents)
+WHERE {
+  ?a ax:developedBy ?d ; ax:hasCapability/ax:performsTask ?t .
+  FILTER NOT EXISTS { ?a ax:lifecycle "등록 검토 중" }
+  ?t skos:prefLabel ?task .
+}
+GROUP BY ?task
+HAVING (COUNT(DISTINCT ?d) > 1)
+ORDER BY DESC(?departments) ?task
+
+#### CQ3 원문 표기 "회의 녹취"는 어떤 표준 개념인가? (별칭 사전)
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?concept ?prefLabel
+WHERE {
+  ?concept skos:prefLabel|skos:altLabel ?l .
+  FILTER (STR(?l) = "회의 녹취")
+  ?concept skos:prefLabel ?prefLabel .
+}
+
+#### CQ4 판정 SA-1은 어떤 항목이 같고 어떤 항목이 다른가?
+PREFIX ax:   <https://github.com/thanksdooss/axiom-agent-map/ontology#>
+PREFIX ex:   <https://github.com/thanksdooss/axiom-agent-map/example/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?verdict ?kind ?facet ?rationale
+WHERE {
+  ex:SA-1 ax:verdict/rdfs:label ?verdict ; ax:rationale ?rationale .
+  { ex:SA-1 ax:matchedFacet ?f . BIND("일치" AS ?kind) }
+  UNION
+  { ex:SA-1 ax:differingFacet ?f . BIND("차이" AS ?kind) }
+  ?f rdfs:label ?facet .
+}
+ORDER BY ?kind ?facet
+
+#### CQ5 등록 신청 중인 NEW1과 작업 유형·입력 데이터가 같은 기존 Agent는? (등록 전 중복 점검)
+PREFIX ax:   <https://github.com/thanksdooss/axiom-agent-map/ontology#>
+PREFIX ex:   <https://github.com/thanksdooss/axiom-agent-map/example/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT DISTINCT ?existing ?dept
+WHERE {
+  ex:NEW1 ax:hasCapability ?n .
+  ?n ax:performsTask ?t ; ax:consumes ?i .
+  ?a ax:hasCapability ?c ; ax:agentName ?existing ; ax:developedBy/skos:prefLabel ?dept .
+  ?c ax:performsTask ?t ; ax:consumes ?i .
+  FILTER (?a != ex:NEW1)
+}
+ORDER BY ?existing
+
+#### CQ6 중복 군집별 구성원과 권고 조치는?
+PREFIX ax:   <https://github.com/thanksdooss/axiom-agent-map/ontology#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?cluster ?action (GROUP_CONCAT(?member; separator=", ") AS ?members)
+WHERE {
+  ?cl a ax:DuplicateCluster ; rdfs:label ?cluster ; ax:recommendedAction/rdfs:label ?action .
+  ?a ax:memberOf ?cl ; ax:agentName ?member .
+}
+GROUP BY ?cluster ?action
+ORDER BY ?cluster

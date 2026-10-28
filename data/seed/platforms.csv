@@ -1,0 +1,18 @@
+﻿platform_id,name,category,alt_labels
+P01,Salesforce,CRM,SFDC; 세일즈포스
+P02,HubSpot,마케팅 자동화,허브스팟
+P03,SAP,ERP,SAP ERP; SAP HR; 에스에이피
+P04,Workday,HR 시스템,워크데이; 워크데이 채용
+P05,Slack,협업 메신저,슬랙
+P06,Microsoft Teams,협업 메신저,MS Teams; Teams; 팀즈
+P07,SharePoint,문서 관리,쉐어포인트
+P08,Jira,개발 협업,JIRA; 지라; JIRA Service Management
+P09,Confluence,문서 관리,컨플루언스
+P10,GitHub,개발 협업,깃헙
+P11,Zendesk,고객지원,젠데스크
+P12,사내 메일,메일,사내메일; 그룹웨어 메일; 아웃룩; 메일
+P13,Google Analytics,웹 분석,GA4
+P14,DocuSign,전자서명,도큐사인
+P15,AWS,클라우드,Amazon Web Services
+P16,Splunk,보안 관제,스플렁크
+P17,Active Directory,계정 관리,AD

@@ -1,0 +1,4 @@
+﻿raw_label,kind,mentioned_by,reason,source_file,source_locator
+구매 관련 자료 일체,DataAsset,A033,어떤 데이터인지 특정할 수 없음 — 제출 부서에 확인,03_고객지원_구매.csv,11행 data_used열
+소송 관련 문서,DataAsset,A047,표준 데이터 목록에 없음 — 신규 데이터로 등록할지 확인,05_법무_경영기획.docx,문단 11 문장 2
+마켓인텔 API,Agent/외부 서비스,A050,등록되지 않은 외부 서비스 — 외부 대상으로 등록할지 확인,05_법무_경영기획.docx,문단 17 문장 4

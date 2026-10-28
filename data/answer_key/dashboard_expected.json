@@ -1,0 +1,64 @@
+{
+  "total_agents": 53,
+  "agents_by_status": {
+    "운영": 40,
+    "파일럿": 12,
+    "중단": 1
+  },
+  "data_assets_by_sensitivity": {
+    "상": 9,
+    "중": 10,
+    "하": 11
+  },
+  "relationships_by_status": {
+    "SAMPLE": 14,
+    "CONFIRMED": 302,
+    "CANDIDATE": 10
+  },
+  "relationships_by_type": {
+    "데이터사용": 85,
+    "사용 플랫폼": 84,
+    "소속": 53,
+    "업무 성격": 53,
+    "결과사용": 23,
+    "저장 위치": 28
+  },
+  "pending_entities": 3,
+  "review_flags": 42,
+  "agents_with_review_flags": 23,
+  "by_scope": {
+    "all_statuses": {
+      "agents_by_department": {
+        "IT운영팀": 5,
+        "개발팀": 5,
+        "경영기획팀": 5,
+        "고객지원팀": 6,
+        "구매팀": 5,
+        "마케팅팀": 6,
+        "법무팀": 5,
+        "영업팀": 6,
+        "인사팀": 5,
+        "재무팀": 5
+      },
+      "agents_accessing_high_sensitivity": 24,
+      "share_accessing_high_sensitivity": 0.453
+    },
+    "confirmed_only": {
+      "agents_by_department": {
+        "(미확정)": 5,
+        "IT운영팀": 4,
+        "개발팀": 5,
+        "경영기획팀": 4,
+        "고객지원팀": 5,
+        "구매팀": 5,
+        "마케팅팀": 5,
+        "법무팀": 5,
+        "영업팀": 5,
+        "인사팀": 5,
+        "재무팀": 5
+      },
+      "agents_accessing_high_sensitivity": 21,
+      "share_accessing_high_sensitivity": 0.396
+    }
+  }
+}

@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: axiom-backend
+  datasource:
+    url: jdbc:h2:mem:axiom;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc.batch_size: 100
+        order_inserts: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 50MB
+
+axiom:
+  # 데이터 폴더 (상대 경로는 실행 위치 기준). 예: AXIOM_DATA_DIR=/abs/path/data
+  data-dir: ${AXIOM_DATA_DIR:../data}
+  startup-mode: full
+  timezone: Asia/Seoul
+  cors-origins:
+    - http://localhost:5173
+  llm:
+    # auto | anthropic | openai | none  (auto: ANTHROPIC_API_KEY가 있으면 anthropic, 없으면 none)
+    provider: ${AXIOM_LLM_PROVIDER:auto}
+    timeout-seconds: 60
+    anthropic:
+      model: ${AXIOM_ANTHROPIC_MODEL:claude-opus-5-5}
+      effort: low
+      fallbacks: true
+    openai:
+      base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+      model: ${OPENAI_MODEL:gpt-4o-mini}
+      json-schema: true
+
+logging:
+  level:
+    org.hibernate.SQL: warn

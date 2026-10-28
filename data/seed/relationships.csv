@@ -1,0 +1,327 @@
+﻿rel_id,type,type_label,source_id,source_name,target_id,target_name,status,evidence_count,evidence_text,source_file,source_locator,review_reason,reviewed_by,reviewed_at
+R0001,ACCESSES_DATA,데이터사용,A001,고객분석 Agent,D001,CRM 고객정보,SAMPLE,1,A001 고객분석 Agent → D001 CRM 고객정보 (데이터사용),seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0002,USES_PLATFORM,사용 플랫폼,A001,고객분석 Agent,P01,Salesforce,SAMPLE,1,고객분석 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0003,USES_PLATFORM,사용 플랫폼,A001,고객분석 Agent,P02,HubSpot,SAMPLE,1,고객분석 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0004,BELONGS_TO,소속,A001,고객분석 Agent,DEP02,마케팅팀,SAMPLE,1,고객분석 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0005,HAS_WORK_TYPE,업무 성격,A001,고객분석 Agent,WT3,데이터 분석,SAMPLE,1,고객분석 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0006,USES_RESULT_OF,결과사용,A002,상품추천 Agent,A001,고객분석 Agent,SAMPLE,1,A002 상품추천 Agent → A001 고객분석 Agent (결과사용),seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0007,ACCESSES_DATA,데이터사용,A002,상품추천 Agent,D002,상품 정보,SAMPLE,1,A002 상품추천 Agent → D002 상품 정보 (데이터사용),seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0008,USES_PLATFORM,사용 플랫폼,A002,상품추천 Agent,P01,Salesforce,SAMPLE,1,상품추천 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0009,BELONGS_TO,소속,A002,상품추천 Agent,DEP01,영업팀,SAMPLE,1,상품추천 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0010,HAS_WORK_TYPE,업무 성격,A002,상품추천 Agent,WT3,데이터 분석,SAMPLE,1,상품추천 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0011,USES_RESULT_OF,결과사용,A003,상담지원 Agent,A002,상품추천 Agent,SAMPLE,1,A003 상담지원 Agent → A002 상품추천 Agent (결과사용),seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0012,USES_PLATFORM,사용 플랫폼,A003,상담지원 Agent,P11,Zendesk,SAMPLE,1,상담지원 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0013,BELONGS_TO,소속,A003,상담지원 Agent,DEP03,고객지원팀,SAMPLE,1,상담지원 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0014,HAS_WORK_TYPE,업무 성격,A003,상담지원 Agent,WT5,고객 응대,SAMPLE,1,상담지원 Agent 등록 정보,seed (팀 설계안 '저장되는 Agent 관계' 예시),팀 설계 보드,,,
+R0015,USES_RESULT_OF,결과사용,A004,견적서 자동작성 Agent,A005,단가 조회 Agent,CONFIRMED,1,단가 조회 Agent,01_영업_마케팅.json,/agents/0/callsAgents/0,,주관팀 검토자 B,2026-10-24
+R0016,ACCESSES_DATA,데이터사용,A004,견적서 자동작성 Agent,D001,CRM 고객정보,CONFIRMED,1,세일즈포스 고객 데이터,01_영업_마케팅.json,/agents/0/dataSources/0,,주관팀 검토자 A,2026-10-23
+R0017,ACCESSES_DATA,데이터사용,A004,견적서 자동작성 Agent,D002,상품 정보,CONFIRMED,1,단가표 엑셀,01_영업_마케팅.json,/agents/0/dataSources/1,,주관팀 검토자 B,2026-10-24
+R0018,ACCESSES_DATA,데이터사용,A004,견적서 자동작성 Agent,D003,과거 견적 이력,CONFIRMED,1,과거 견적 이력,01_영업_마케팅.json,/agents/0/dataSources/2,,주관팀 검토자 A,2026-10-23
+R0019,USES_PLATFORM,사용 플랫폼,A004,견적서 자동작성 Agent,P01,Salesforce,CONFIRMED,1,세일즈포스,01_영업_마케팅.json,/agents/0/connectedPlatforms/0,,주관팀 검토자 B,2026-10-24
+R0020,USES_PLATFORM,사용 플랫폼,A004,견적서 자동작성 Agent,P12,사내 메일,CONFIRMED,1,사내메일,01_영업_마케팅.json,/agents/0/connectedPlatforms/1,,주관팀 검토자 A,2026-10-23
+R0021,BELONGS_TO,소속,A004,견적서 자동작성 Agent,DEP01,영업팀,CONFIRMED,1,영업본부/기업영업팀,01_영업_마케팅.json,/agents/0/dept,,주관팀 검토자 B,2026-10-24
+R0022,HAS_WORK_TYPE,업무 성격,A004,견적서 자동작성 Agent,WT1,문서 작성,CONFIRMED,1,문서 작성,01_영업_마케팅.json,/agents/0/category,,주관팀 검토자 A,2026-10-23
+R0023,ACCESSES_DATA,데이터사용,A005,단가 조회 Agent,D002,상품 정보,CONFIRMED,1,단가표,01_영업_마케팅.json,/agents/1/dataSources/0,,주관팀 검토자 B,2026-10-24
+R0024,ACCESSES_DATA,데이터사용,A005,단가 조회 Agent,D004,재고 현황,CONFIRMED,1,재고 데이터,01_영업_마케팅.json,/agents/1/dataSources/1,,주관팀 검토자 A,2026-10-23
+R0025,USES_PLATFORM,사용 플랫폼,A005,단가 조회 Agent,P03,SAP,CANDIDATE,1,ERP,01_영업_마케팅.json,/agents/1/connectedPlatforms/0,어떤 ERP인지 불명확 (SAP로 추정),,
+R0026,BELONGS_TO,소속,A005,단가 조회 Agent,DEP01,영업팀,CONFIRMED,1,영업팀,01_영업_마케팅.json,/agents/1/dept,,주관팀 검토자 A,2026-10-23
+R0027,HAS_WORK_TYPE,업무 성격,A005,단가 조회 Agent,WT7,검색·요약,CONFIRMED,1,검색·요약,01_영업_마케팅.json,/agents/1/category,,주관팀 검토자 B,2026-10-24
+R0028,USES_RESULT_OF,결과사용,A006,영업 주간 리포트 Agent,A004,견적서 자동작성 Agent,CONFIRMED,1,견적서 자동작성 Agent,01_영업_마케팅.json,/agents/2/callsAgents/0,,주관팀 검토자 A,2026-10-23
+R0029,ACCESSES_DATA,데이터사용,A006,영업 주간 리포트 Agent,D005,매출 실적,CANDIDATE,1,영업 데이터 전반,01_영업_마케팅.json,/agents/2/dataSources/0,범위가 넓어 어떤 데이터인지 불명확 (매출 실적으로 추정),,
+R0030,USES_PLATFORM,사용 플랫폼,A006,영업 주간 리포트 Agent,P01,Salesforce,CONFIRMED,1,SFDC,01_영업_마케팅.json,/agents/2/connectedPlatforms/0,,주관팀 검토자 A,2026-10-23
+R0031,USES_PLATFORM,사용 플랫폼,A006,영업 주간 리포트 Agent,P05,Slack,CONFIRMED,1,슬랙,01_영업_마케팅.json,/agents/2/connectedPlatforms/1,,주관팀 검토자 B,2026-10-24
+R0032,BELONGS_TO,소속,A006,영업 주간 리포트 Agent,DEP01,영업팀,CONFIRMED,1,영업팀,01_영업_마케팅.json,/agents/2/dept,,주관팀 검토자 A,2026-10-23
+R0033,HAS_WORK_TYPE,업무 성격,A006,영업 주간 리포트 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,01_영업_마케팅.json,/agents/2/category,,주관팀 검토자 B,2026-10-24
+R0034,ACCESSES_DATA,데이터사용,A007,계약 갱신 알림 Agent,D001,CRM 고객정보,CONFIRMED,1,CRM 고객테이블,01_영업_마케팅.json,/agents/3/dataSources/0,,주관팀 검토자 A,2026-10-23
+R0035,ACCESSES_DATA,데이터사용,A007,계약 갱신 알림 Agent,D006,계약서 원문,CONFIRMED,1,계약 문서,01_영업_마케팅.json,/agents/3/dataSources/1,,주관팀 검토자 B,2026-10-24
+R0036,USES_PLATFORM,사용 플랫폼,A007,계약 갱신 알림 Agent,P01,Salesforce,CONFIRMED,1,Salesforce,01_영업_마케팅.json,/agents/3/connectedPlatforms/0,,주관팀 검토자 A,2026-10-23
+R0037,USES_PLATFORM,사용 플랫폼,A007,계약 갱신 알림 Agent,P12,사내 메일,CONFIRMED,1,사내 메일,01_영업_마케팅.json,/agents/3/connectedPlatforms/1,,주관팀 검토자 B,2026-10-24
+R0038,BELONGS_TO,소속,A007,계약 갱신 알림 Agent,DEP01,영업팀,CONFIRMED,1,영업팀,01_영업_마케팅.json,/agents/3/dept,,주관팀 검토자 A,2026-10-23
+R0039,HAS_WORK_TYPE,업무 성격,A007,계약 갱신 알림 Agent,WT6,모니터링,CONFIRMED,1,모니터링,01_영업_마케팅.json,/agents/3/category,,주관팀 검토자 B,2026-10-24
+R0040,ACCESSES_DATA,데이터사용,A008,리드 스코어링 Agent,D001,CRM 고객정보,CONFIRMED,1,고객DB,01_영업_마케팅.json,/agents/4/dataSources/0,,주관팀 검토자 A,2026-10-23
+R0041,ACCESSES_DATA,데이터사용,A008,리드 스코어링 Agent,D009,웹 방문 로그,CONFIRMED,1,웹 방문 로그,01_영업_마케팅.json,/agents/4/dataSources/1,,주관팀 검토자 B,2026-10-24
+R0042,USES_PLATFORM,사용 플랫폼,A008,리드 스코어링 Agent,P01,Salesforce,CONFIRMED,1,Salesforce,01_영업_마케팅.json,/agents/4/connectedPlatforms/0,,주관팀 검토자 A,2026-10-23
+R0043,USES_PLATFORM,사용 플랫폼,A008,리드 스코어링 Agent,P02,HubSpot,CONFIRMED,1,허브스팟,01_영업_마케팅.json,/agents/4/connectedPlatforms/1,,주관팀 검토자 B,2026-10-24
+R0044,BELONGS_TO,소속,A008,리드 스코어링 Agent,DEP01,영업팀,CONFIRMED,1,영업팀,01_영업_마케팅.json,/agents/4/dept,,주관팀 검토자 A,2026-10-23
+R0045,HAS_WORK_TYPE,업무 성격,A008,리드 스코어링 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,01_영업_마케팅.json,/agents/4/category,,주관팀 검토자 B,2026-10-24
+R0046,USES_RESULT_OF,결과사용,A009,캠페인 문구 생성 Agent,A001,고객분석 Agent,CONFIRMED,1,고객 분석 Agent,01_영업_마케팅.json,/agents/5/callsAgents/0,,주관팀 검토자 A,2026-10-23
+R0047,ACCESSES_DATA,데이터사용,A009,캠페인 문구 생성 Agent,D001,CRM 고객정보,CONFIRMED,1,고객 데이터베이스,01_영업_마케팅.json,/agents/5/dataSources/0,,주관팀 검토자 B,2026-10-24
+R0048,ACCESSES_DATA,데이터사용,A009,캠페인 문구 생성 Agent,D008,캠페인 성과 데이터,CONFIRMED,1,캠페인 성과 데이터,01_영업_마케팅.json,/agents/5/dataSources/1,,주관팀 검토자 A,2026-10-23
+R0049,USES_PLATFORM,사용 플랫폼,A009,캠페인 문구 생성 Agent,P02,HubSpot,CONFIRMED,1,HubSpot,01_영업_마케팅.json,/agents/5/connectedPlatforms/0,,주관팀 검토자 B,2026-10-24
+R0050,BELONGS_TO,소속,A009,캠페인 문구 생성 Agent,DEP02,마케팅팀,CONFIRMED,1,마케팅팀,01_영업_마케팅.json,/agents/5/dept,,주관팀 검토자 A,2026-10-23
+R0051,HAS_WORK_TYPE,업무 성격,A009,캠페인 문구 생성 Agent,WT2,콘텐츠 생성,CONFIRMED,1,콘텐츠 생성,01_영업_마케팅.json,/agents/5/category,,주관팀 검토자 B,2026-10-24
+R0052,USES_RESULT_OF,결과사용,A010,타깃 고객 추출 Agent,A001,고객분석 Agent,CONFIRMED,1,고객분석 Agent,01_영업_마케팅.json,/agents/6/callsAgents/0,,주관팀 검토자 A,2026-10-23
+R0053,ACCESSES_DATA,데이터사용,A010,타깃 고객 추출 Agent,D001,CRM 고객정보,CONFIRMED,1,고객DB,01_영업_마케팅.json,/agents/6/dataSources/0,,주관팀 검토자 B,2026-10-24
+R0054,ACCESSES_DATA,데이터사용,A010,타깃 고객 추출 Agent,D005,매출 실적,CONFIRMED,1,매출데이터,01_영업_마케팅.json,/agents/6/dataSources/1,,주관팀 검토자 A,2026-10-23
+R0055,USES_PLATFORM,사용 플랫폼,A010,타깃 고객 추출 Agent,P01,Salesforce,CONFIRMED,1,세일즈포스,01_영업_마케팅.json,/agents/6/connectedPlatforms/0,,주관팀 검토자 B,2026-10-24
+R0056,USES_PLATFORM,사용 플랫폼,A010,타깃 고객 추출 Agent,P02,HubSpot,CONFIRMED,1,HubSpot,01_영업_마케팅.json,/agents/6/connectedPlatforms/1,,주관팀 검토자 A,2026-10-23
+R0057,BELONGS_TO,소속,A010,타깃 고객 추출 Agent,DEP02,마케팅팀,CONFIRMED,1,마케팅팀,01_영업_마케팅.json,/agents/6/dept,,주관팀 검토자 B,2026-10-24
+R0058,HAS_WORK_TYPE,업무 성격,A010,타깃 고객 추출 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,01_영업_마케팅.json,/agents/6/category,,주관팀 검토자 A,2026-10-23
+R0059,ACCESSES_DATA,데이터사용,A011,SNS 반응 분석 Agent,D008,캠페인 성과 데이터,CONFIRMED,1,캠페인 결과,01_영업_마케팅.json,/agents/7/dataSources/1,,주관팀 검토자 B,2026-10-24
+R0060,ACCESSES_DATA,데이터사용,A011,SNS 반응 분석 Agent,D009,웹 방문 로그,CONFIRMED,1,웹 방문 로그,01_영업_마케팅.json,/agents/7/dataSources/0,,주관팀 검토자 A,2026-10-23
+R0061,USES_PLATFORM,사용 플랫폼,A011,SNS 반응 분석 Agent,P05,Slack,CONFIRMED,1,슬랙,01_영업_마케팅.json,/agents/7/connectedPlatforms/1,,주관팀 검토자 B,2026-10-24
+R0062,USES_PLATFORM,사용 플랫폼,A011,SNS 반응 분석 Agent,P13,Google Analytics,CONFIRMED,1,GA4,01_영업_마케팅.json,/agents/7/connectedPlatforms/0,,주관팀 검토자 A,2026-10-23
+R0063,BELONGS_TO,소속,A011,SNS 반응 분석 Agent,DEP02,마케팅팀,CONFIRMED,1,마케팅팀,01_영업_마케팅.json,/agents/7/dept,,주관팀 검토자 B,2026-10-24
+R0064,HAS_WORK_TYPE,업무 성격,A011,SNS 반응 분석 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,01_영업_마케팅.json,/agents/7/category,,주관팀 검토자 A,2026-10-23
+R0065,USES_RESULT_OF,결과사용,A012,마케팅 성과 리포트 Agent,A011,SNS 반응 분석 Agent,CONFIRMED,1,SNS 반응 분석 Agent,01_영업_마케팅.json,/agents/8/callsAgents/0,,주관팀 검토자 B,2026-10-24
+R0066,ACCESSES_DATA,데이터사용,A012,마케팅 성과 리포트 Agent,D008,캠페인 성과 데이터,CONFIRMED,1,캠페인 성과 데이터,01_영업_마케팅.json,/agents/8/dataSources/0,,주관팀 검토자 A,2026-10-23
+R0067,ACCESSES_DATA,데이터사용,A012,마케팅 성과 리포트 Agent,D009,웹 방문 로그,CONFIRMED,1,웹 방문 로그,01_영업_마케팅.json,/agents/8/dataSources/1,,주관팀 검토자 B,2026-10-24
+R0068,USES_PLATFORM,사용 플랫폼,A012,마케팅 성과 리포트 Agent,P07,SharePoint,CONFIRMED,1,쉐어포인트,01_영업_마케팅.json,/agents/8/connectedPlatforms/1,,주관팀 검토자 A,2026-10-23
+R0069,USES_PLATFORM,사용 플랫폼,A012,마케팅 성과 리포트 Agent,P13,Google Analytics,CONFIRMED,1,Google Analytics,01_영업_마케팅.json,/agents/8/connectedPlatforms/0,,주관팀 검토자 B,2026-10-24
+R0070,BELONGS_TO,소속,A012,마케팅 성과 리포트 Agent,DEP02,마케팅팀,CONFIRMED,1,마케팅,01_영업_마케팅.json,/agents/8/dept,,주관팀 검토자 A,2026-10-23
+R0071,HAS_WORK_TYPE,업무 성격,A012,마케팅 성과 리포트 Agent,WT1,문서 작성,CONFIRMED,1,문서 작성,01_영업_마케팅.json,/agents/8/category,,주관팀 검토자 B,2026-10-24
+R0072,ACCESSES_DATA,데이터사용,A013,보도자료 초안 Agent,D010,브랜드 가이드라인,CONFIRMED,1,브랜드 가이드,01_영업_마케팅.json,/agents/9/dataSources/0,,주관팀 검토자 A,2026-10-23
+R0073,USES_PLATFORM,사용 플랫폼,A013,보도자료 초안 Agent,P06,Microsoft Teams,CONFIRMED,1,팀즈,01_영업_마케팅.json,/agents/9/connectedPlatforms/1,,주관팀 검토자 B,2026-10-24
+R0074,USES_PLATFORM,사용 플랫폼,A013,보도자료 초안 Agent,P07,SharePoint,CONFIRMED,1,SharePoint,01_영업_마케팅.json,/agents/9/connectedPlatforms/0,,주관팀 검토자 A,2026-10-23
+R0075,BELONGS_TO,소속,A013,보도자료 초안 Agent,DEP02,마케팅팀,CONFIRMED,1,마케팅팀,01_영업_마케팅.json,/agents/9/dept,,주관팀 검토자 B,2026-10-24
+R0076,HAS_WORK_TYPE,업무 성격,A013,보도자료 초안 Agent,WT2,콘텐츠 생성,CONFIRMED,1,콘텐츠 생성,01_영업_마케팅.json,/agents/9/category,,주관팀 검토자 A,2026-10-23
+R0077,ACCESSES_DATA,데이터사용,A014,코드 리뷰 Agent,D011,소스코드 저장소,CONFIRMED,1,소스 레포,02_개발_IT운영.yaml,12행 (agents[0].uses_data[0]),,주관팀 검토자 B,2026-10-24
+R0078,USES_PLATFORM,사용 플랫폼,A014,코드 리뷰 Agent,P10,GitHub,CONFIRMED,1,깃헙,02_개발_IT운영.yaml,10행 (agents[0].integrations[0]),,주관팀 검토자 A,2026-10-23
+R0079,BELONGS_TO,소속,A014,코드 리뷰 Agent,DEP04,개발팀,CONFIRMED,1,개발팀,02_개발_IT운영.yaml,5행 (agents[0].team),,주관팀 검토자 B,2026-10-24
+R0080,HAS_WORK_TYPE,업무 성격,A014,코드 리뷰 Agent,WT4,검토·심사,CONFIRMED,1,검토·심사,02_개발_IT운영.yaml,7행 (agents[0].type),,주관팀 검토자 A,2026-10-23
+R0081,USES_RESULT_OF,결과사용,A015,장애 원인 분석 Agent,A016,사내 위키 검색 Agent,CONFIRMED,1,사내 위키 검색 Agent,02_개발_IT운영.yaml,29행 (agents[1].depends_on[0]),,주관팀 검토자 B,2026-10-24
+R0082,ACCESSES_DATA,데이터사용,A015,장애 원인 분석 Agent,D011,소스코드 저장소,CONFIRMED,1,소스코드 저장소,02_개발_IT운영.yaml,27행 (agents[1].uses_data[1]),,주관팀 검토자 A,2026-10-23
+R0083,ACCESSES_DATA,데이터사용,A015,장애 원인 분석 Agent,D012,장애 로그,CONFIRMED,1,에러 로그,02_개발_IT운영.yaml,26행 (agents[1].uses_data[0]),,주관팀 검토자 B,2026-10-24
+R0084,USES_PLATFORM,사용 플랫폼,A015,장애 원인 분석 Agent,P05,Slack,CONFIRMED,1,Slack,02_개발_IT운영.yaml,24행 (agents[1].integrations[1]),,주관팀 검토자 A,2026-10-23
+R0085,USES_PLATFORM,사용 플랫폼,A015,장애 원인 분석 Agent,P08,Jira,CONFIRMED,1,지라,02_개발_IT운영.yaml,23행 (agents[1].integrations[0]),,주관팀 검토자 B,2026-10-24
+R0086,BELONGS_TO,소속,A015,장애 원인 분석 Agent,DEP04,개발팀,CONFIRMED,1,개발본부 플랫폼개발팀,02_개발_IT운영.yaml,18행 (agents[1].team),,주관팀 검토자 A,2026-10-23
+R0087,HAS_WORK_TYPE,업무 성격,A015,장애 원인 분석 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,02_개발_IT운영.yaml,20행 (agents[1].type),,주관팀 검토자 B,2026-10-24
+R0088,ACCESSES_DATA,데이터사용,A016,사내 위키 검색 Agent,D013,사내 기술문서,CONFIRMED,1,위키 문서,02_개발_IT운영.yaml,41행 (agents[2].uses_data[0]),,주관팀 검토자 A,2026-10-23
+R0089,USES_PLATFORM,사용 플랫폼,A016,사내 위키 검색 Agent,P09,Confluence,CONFIRMED,1,컨플루언스,02_개발_IT운영.yaml,39행 (agents[2].integrations[0]),,주관팀 검토자 B,2026-10-24
+R0090,BELONGS_TO,소속,A016,사내 위키 검색 Agent,DEP04,개발팀,CONFIRMED,1,개발팀,02_개발_IT운영.yaml,34행 (agents[2].team),,주관팀 검토자 A,2026-10-23
+R0091,HAS_WORK_TYPE,업무 성격,A016,사내 위키 검색 Agent,WT7,검색·요약,CONFIRMED,1,검색·요약,02_개발_IT운영.yaml,36행 (agents[2].type),,주관팀 검토자 B,2026-10-24
+R0092,ACCESSES_DATA,데이터사용,A017,테스트 코드 생성 Agent,D011,소스코드 저장소,CONFIRMED,1,코드베이스,02_개발_IT운영.yaml,54행 (agents[3].uses_data[0]),,주관팀 검토자 A,2026-10-23
+R0093,USES_PLATFORM,사용 플랫폼,A017,테스트 코드 생성 Agent,P10,GitHub,CONFIRMED,1,GitHub,02_개발_IT운영.yaml,52행 (agents[3].integrations[0]),,주관팀 검토자 B,2026-10-24
+R0094,BELONGS_TO,소속,A017,테스트 코드 생성 Agent,DEP04,개발팀,CONFIRMED,1,개발팀,02_개발_IT운영.yaml,47행 (agents[3].team),,주관팀 검토자 A,2026-10-23
+R0095,HAS_WORK_TYPE,업무 성격,A017,테스트 코드 생성 Agent,WT8,자동화 처리,CONFIRMED,1,자동화 처리,02_개발_IT운영.yaml,49행 (agents[3].type),,주관팀 검토자 B,2026-10-24
+R0096,USES_RESULT_OF,결과사용,A018,릴리스 노트 작성 Agent,A014,코드 리뷰 Agent,CONFIRMED,1,코드 리뷰 Agent,02_개발_IT운영.yaml,71행 (agents[4].depends_on[0]),,주관팀 검토자 A,2026-10-23
+R0097,ACCESSES_DATA,데이터사용,A018,릴리스 노트 작성 Agent,D011,소스코드 저장소,CONFIRMED,1,커밋 이력,02_개발_IT운영.yaml,69행 (agents[4].uses_data[0]),,주관팀 검토자 B,2026-10-24
+R0098,USES_PLATFORM,사용 플랫폼,A018,릴리스 노트 작성 Agent,P08,Jira,CONFIRMED,1,JIRA,02_개발_IT운영.yaml,66행 (agents[4].integrations[0]),,주관팀 검토자 A,2026-10-23
+R0099,USES_PLATFORM,사용 플랫폼,A018,릴리스 노트 작성 Agent,P09,Confluence,CONFIRMED,1,Confluence,02_개발_IT운영.yaml,67행 (agents[4].integrations[1]),,주관팀 검토자 B,2026-10-24
+R0100,BELONGS_TO,소속,A018,릴리스 노트 작성 Agent,DEP04,개발팀,CONFIRMED,1,개발팀,02_개발_IT운영.yaml,61행 (agents[4].team),,주관팀 검토자 A,2026-10-23
+R0101,HAS_WORK_TYPE,업무 성격,A018,릴리스 노트 작성 Agent,WT1,문서 작성,CONFIRMED,1,문서 작성,02_개발_IT운영.yaml,63행 (agents[4].type),,주관팀 검토자 B,2026-10-24
+R0102,ACCESSES_DATA,데이터사용,A019,계정 권한 점검 Agent,D014,임직원 인사정보,CONFIRMED,1,HR 마스터,02_개발_IT운영.yaml,84행 (agents[5].uses_data[0]),,주관팀 검토자 A,2026-10-23
+R0103,ACCESSES_DATA,데이터사용,A019,계정 권한 점검 Agent,D015,시스템 접근 권한 목록,CONFIRMED,1,권한 목록,02_개발_IT운영.yaml,85행 (agents[5].uses_data[1]),,주관팀 검토자 B,2026-10-24
+R0104,USES_PLATFORM,사용 플랫폼,A019,계정 권한 점검 Agent,P04,Workday,CONFIRMED,1,워크데이,02_개발_IT운영.yaml,82행 (agents[5].integrations[1]),,주관팀 검토자 A,2026-10-23
+R0105,USES_PLATFORM,사용 플랫폼,A019,계정 권한 점검 Agent,P17,Active Directory,CONFIRMED,1,AD,02_개발_IT운영.yaml,81행 (agents[5].integrations[0]),,주관팀 검토자 B,2026-10-24
+R0106,BELONGS_TO,소속,A019,계정 권한 점검 Agent,DEP05,IT운영팀,CONFIRMED,1,IT운영팀,02_개발_IT운영.yaml,76행 (agents[5].team),,주관팀 검토자 A,2026-10-23
+R0107,HAS_WORK_TYPE,업무 성격,A019,계정 권한 점검 Agent,WT6,모니터링,CONFIRMED,1,모니터링,02_개발_IT운영.yaml,78행 (agents[5].type),,주관팀 검토자 B,2026-10-24
+R0108,USES_RESULT_OF,결과사용,A020,헬프데스크 티켓 분류 Agent,A016,사내 위키 검색 Agent,CONFIRMED,1,사내 위키 검색 Agent,02_개발_IT운영.yaml,101행 (agents[6].depends_on[0]),,주관팀 검토자 A,2026-10-23
+R0109,ACCESSES_DATA,데이터사용,A020,헬프데스크 티켓 분류 Agent,D016,IT 문의 티켓,CONFIRMED,1,헬프데스크 티켓,02_개발_IT운영.yaml,99행 (agents[6].uses_data[0]),,주관팀 검토자 B,2026-10-24
+R0110,USES_PLATFORM,사용 플랫폼,A020,헬프데스크 티켓 분류 Agent,P06,Microsoft Teams,CONFIRMED,1,MS Teams,02_개발_IT운영.yaml,97행 (agents[6].integrations[1]),,주관팀 검토자 A,2026-10-23
+R0111,USES_PLATFORM,사용 플랫폼,A020,헬프데스크 티켓 분류 Agent,P08,Jira,CONFIRMED,1,JIRA Service Management,02_개발_IT운영.yaml,96행 (agents[6].integrations[0]),,주관팀 검토자 B,2026-10-24
+R0112,BELONGS_TO,소속,A020,헬프데스크 티켓 분류 Agent,DEP05,IT운영팀,CONFIRMED,1,IT운영팀,02_개발_IT운영.yaml,91행 (agents[6].team),,주관팀 검토자 A,2026-10-23
+R0113,HAS_WORK_TYPE,업무 성격,A020,헬프데스크 티켓 분류 Agent,WT8,자동화 처리,CONFIRMED,1,자동화 처리,02_개발_IT운영.yaml,93행 (agents[6].type),,주관팀 검토자 B,2026-10-24
+R0114,ACCESSES_DATA,데이터사용,A021,클라우드 비용 모니터링 Agent,D017,클라우드 비용 데이터,CONFIRMED,1,AWS 빌링 데이터,02_개발_IT운영.yaml,113행 (agents[7].uses_data[0]),,주관팀 검토자 A,2026-10-23
+R0115,USES_PLATFORM,사용 플랫폼,A021,클라우드 비용 모니터링 Agent,P15,AWS,CONFIRMED,1,Amazon Web Services,02_개발_IT운영.yaml,111행 (agents[7].integrations[0]),,주관팀 검토자 B,2026-10-24
+R0116,BELONGS_TO,소속,A021,클라우드 비용 모니터링 Agent,DEP05,IT운영팀,CONFIRMED,1,IT운영팀,02_개발_IT운영.yaml,106행 (agents[7].team),,주관팀 검토자 A,2026-10-23
+R0117,HAS_WORK_TYPE,업무 성격,A021,클라우드 비용 모니터링 Agent,WT6,모니터링,CONFIRMED,1,모니터링,02_개발_IT운영.yaml,108행 (agents[7].type),,주관팀 검토자 B,2026-10-24
+R0118,ACCESSES_DATA,데이터사용,A022,보안 로그 탐지 Agent,D015,시스템 접근 권한 목록,CONFIRMED,1,접근 권한 목록,02_개발_IT운영.yaml,128행 (agents[8].uses_data[1]),,주관팀 검토자 A,2026-10-23
+R0119,ACCESSES_DATA,데이터사용,A022,보안 로그 탐지 Agent,D018,보안 로그,CONFIRMED,1,보안 이벤트 로그,02_개발_IT운영.yaml,127행 (agents[8].uses_data[0]),,주관팀 검토자 B,2026-10-24
+R0120,USES_PLATFORM,사용 플랫폼,A022,보안 로그 탐지 Agent,P16,Splunk,CONFIRMED,1,스플렁크,02_개발_IT운영.yaml,124행 (agents[8].integrations[0]),,주관팀 검토자 A,2026-10-23
+R0121,USES_PLATFORM,사용 플랫폼,A022,보안 로그 탐지 Agent,P17,Active Directory,CONFIRMED,1,AD,02_개발_IT운영.yaml,125행 (agents[8].integrations[1]),,주관팀 검토자 B,2026-10-24
+R0122,BELONGS_TO,소속,A022,보안 로그 탐지 Agent,DEP05,IT운영팀,CONFIRMED,1,IT운영팀,02_개발_IT운영.yaml,119행 (agents[8].team),,주관팀 검토자 A,2026-10-23
+R0123,HAS_WORK_TYPE,업무 성격,A022,보안 로그 탐지 Agent,WT6,모니터링,CONFIRMED,1,모니터링,02_개발_IT운영.yaml,121행 (agents[8].type),,주관팀 검토자 B,2026-10-24
+R0124,ACCESSES_DATA,데이터사용,A023,장비 재고 관리 Agent,D004,재고 현황,CONFIRMED,1,장비 재고,02_개발_IT운영.yaml,141행 (agents[9].uses_data[0]),,주관팀 검토자 A,2026-10-23
+R0125,ACCESSES_DATA,데이터사용,A023,장비 재고 관리 Agent,D028,구매 발주 이력,CONFIRMED,1,구매 발주 이력,02_개발_IT운영.yaml,142행 (agents[9].uses_data[1]),,주관팀 검토자 B,2026-10-24
+R0126,USES_PLATFORM,사용 플랫폼,A023,장비 재고 관리 Agent,P03,SAP,CONFIRMED,1,SAP ERP,02_개발_IT운영.yaml,139행 (agents[9].integrations[0]),,주관팀 검토자 A,2026-10-23
+R0127,BELONGS_TO,소속,A023,장비 재고 관리 Agent,DEP05,IT운영팀,CANDIDATE,1,제출부서: 개발본부·IT운영팀,02_개발_IT운영.yaml,1행 (제출부서),소속 부서 누락 — 제출 부서(개발본부·IT운영팀)와 업무로 보아 IT운영팀으로 추정,,
+R0128,HAS_WORK_TYPE,업무 성격,A023,장비 재고 관리 Agent,WT8,자동화 처리,CONFIRMED,1,자동화 처리,02_개발_IT운영.yaml,136행 (agents[9].type),,주관팀 검토자 A,2026-10-23
+R0129,USES_RESULT_OF,결과사용,A024,상담 응대 챗봇 Agent,A025,상담 내용 요약 Agent,CONFIRMED,1,상담 내용 요약 Agent,03_고객지원_구매.csv,2행 linked_agent열,,주관팀 검토자 B,2026-10-24
+R0130,USES_RESULT_OF,결과사용,A024,상담 응대 챗봇 Agent,A026,VOC 분류 Agent,CONFIRMED,1,VOC 분류 Agent,03_고객지원_구매.csv,2행 linked_agent열,,주관팀 검토자 A,2026-10-23
+R0131,ACCESSES_DATA,데이터사용,A024,상담 응대 챗봇 Agent,D026,FAQ 문서,CONFIRMED,1,FAQ,03_고객지원_구매.csv,2행 data_used열,,주관팀 검토자 B,2026-10-24
+R0132,ACCESSES_DATA,데이터사용,A024,상담 응대 챗봇 Agent,D027,고객 상담 이력,CONFIRMED,1,상담 내역,03_고객지원_구매.csv,2행 data_used열,,주관팀 검토자 A,2026-10-23
+R0133,USES_PLATFORM,사용 플랫폼,A024,상담 응대 챗봇 Agent,P11,Zendesk,CONFIRMED,1,젠데스크,03_고객지원_구매.csv,2행 system열,,주관팀 검토자 B,2026-10-24
+R0134,BELONGS_TO,소속,A024,상담 응대 챗봇 Agent,DEP03,고객지원팀,CONFIRMED,1,고객지원팀,03_고객지원_구매.csv,2행 dept_nm열,,주관팀 검토자 A,2026-10-23
+R0135,HAS_WORK_TYPE,업무 성격,A024,상담 응대 챗봇 Agent,WT5,고객 응대,CONFIRMED,1,고객 응대,03_고객지원_구매.csv,2행 task_type열,,주관팀 검토자 B,2026-10-24
+R0136,USES_RESULT_OF,결과사용,A025,상담 내용 요약 Agent,A024,상담 응대 챗봇 Agent,CONFIRMED,1,상담 응대 챗봇 Agent,03_고객지원_구매.csv,3행 linked_agent열,,주관팀 검토자 A,2026-10-23
+R0137,ACCESSES_DATA,데이터사용,A025,상담 내용 요약 Agent,D001,CRM 고객정보,CONFIRMED,1,고객 DB,03_고객지원_구매.csv,3행 data_used열,,주관팀 검토자 B,2026-10-24
+R0138,ACCESSES_DATA,데이터사용,A025,상담 내용 요약 Agent,D027,고객 상담 이력,CONFIRMED,1,상담 로그,03_고객지원_구매.csv,3행 data_used열,,주관팀 검토자 A,2026-10-23
+R0139,USES_PLATFORM,사용 플랫폼,A025,상담 내용 요약 Agent,P01,Salesforce,CONFIRMED,1,Salesforce,03_고객지원_구매.csv,3행 system열,,주관팀 검토자 B,2026-10-24
+R0140,USES_PLATFORM,사용 플랫폼,A025,상담 내용 요약 Agent,P05,Slack,CONFIRMED,1,슬랙,03_고객지원_구매.csv,3행 system열,,주관팀 검토자 A,2026-10-23
+R0141,USES_PLATFORM,사용 플랫폼,A025,상담 내용 요약 Agent,P11,Zendesk,CONFIRMED,1,Zendesk,03_고객지원_구매.csv,3행 system열,,주관팀 검토자 B,2026-10-24
+R0142,BELONGS_TO,소속,A025,상담 내용 요약 Agent,DEP03,고객지원팀,CONFIRMED,1,CS팀,03_고객지원_구매.csv,3행 dept_nm열,,주관팀 검토자 A,2026-10-23
+R0143,HAS_WORK_TYPE,업무 성격,A025,상담 내용 요약 Agent,WT7,검색·요약,CONFIRMED,1,검색·요약,03_고객지원_구매.csv,3행 task_type열,,주관팀 검토자 B,2026-10-24
+R0144,ACCESSES_DATA,데이터사용,A026,VOC 분류 Agent,D027,고객 상담 이력,CANDIDATE,1,VOC 데이터,03_고객지원_구매.csv,4행 data_used열,VOC 분류 결과가 고객 상담 이력과 같은 데이터인지 확인 필요,,
+R0145,USES_PLATFORM,사용 플랫폼,A026,VOC 분류 Agent,P05,Slack,CONFIRMED,1,슬랙,03_고객지원_구매.csv,4행 system열,,주관팀 검토자 B,2026-10-24
+R0146,USES_PLATFORM,사용 플랫폼,A026,VOC 분류 Agent,P11,Zendesk,CONFIRMED,1,Zendesk,03_고객지원_구매.csv,4행 system열,,주관팀 검토자 A,2026-10-23
+R0147,BELONGS_TO,소속,A026,VOC 분류 Agent,DEP03,고객지원팀,CONFIRMED,1,고객지원팀,03_고객지원_구매.csv,4행 dept_nm열,,주관팀 검토자 B,2026-10-24
+R0148,HAS_WORK_TYPE,업무 성격,A026,VOC 분류 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,03_고객지원_구매.csv,4행 task_type열,,주관팀 검토자 A,2026-10-23
+R0149,ACCESSES_DATA,데이터사용,A027,환불 심사 Agent,D027,고객 상담 이력,CONFIRMED,1,상담 이력,03_고객지원_구매.csv,5행 data_used열,,주관팀 검토자 B,2026-10-24
+R0150,ACCESSES_DATA,데이터사용,A027,환불 심사 Agent,D030,주문·결제 내역,CONFIRMED,1,주문/결제 데이터,03_고객지원_구매.csv,5행 data_used열,,주관팀 검토자 A,2026-10-23
+R0151,USES_PLATFORM,사용 플랫폼,A027,환불 심사 Agent,P03,SAP,CONFIRMED,1,SAP,03_고객지원_구매.csv,5행 system열,,주관팀 검토자 B,2026-10-24
+R0152,USES_PLATFORM,사용 플랫폼,A027,환불 심사 Agent,P11,Zendesk,CONFIRMED,1,Zendesk,03_고객지원_구매.csv,5행 system열,,주관팀 검토자 A,2026-10-23
+R0153,BELONGS_TO,소속,A027,환불 심사 Agent,DEP03,고객지원팀,CONFIRMED,1,고객지원팀,03_고객지원_구매.csv,5행 dept_nm열,,주관팀 검토자 B,2026-10-24
+R0154,HAS_WORK_TYPE,업무 성격,A027,환불 심사 Agent,WT4,검토·심사,CONFIRMED,1,검토·심사,03_고객지원_구매.csv,5행 task_type열,,주관팀 검토자 A,2026-10-23
+R0155,USES_RESULT_OF,결과사용,A028,FAQ 자동 갱신 Agent,A026,VOC 분류 Agent,CONFIRMED,1,VOC 분류 Agent,03_고객지원_구매.csv,6행 linked_agent열,,주관팀 검토자 B,2026-10-24
+R0156,ACCESSES_DATA,데이터사용,A028,FAQ 자동 갱신 Agent,D026,FAQ 문서,CONFIRMED,1,FAQ,03_고객지원_구매.csv,6행 data_used열,,주관팀 검토자 A,2026-10-23
+R0157,ACCESSES_DATA,데이터사용,A028,FAQ 자동 갱신 Agent,D027,고객 상담 이력,CONFIRMED,1,상담 내역,03_고객지원_구매.csv,6행 data_used열,,주관팀 검토자 B,2026-10-24
+R0158,USES_PLATFORM,사용 플랫폼,A028,FAQ 자동 갱신 Agent,P09,Confluence,CONFIRMED,1,Confluence,03_고객지원_구매.csv,6행 system열,,주관팀 검토자 A,2026-10-23
+R0159,USES_PLATFORM,사용 플랫폼,A028,FAQ 자동 갱신 Agent,P11,Zendesk,CONFIRMED,1,Zendesk,03_고객지원_구매.csv,6행 system열,,주관팀 검토자 B,2026-10-24
+R0160,BELONGS_TO,소속,A028,FAQ 자동 갱신 Agent,DEP03,고객지원팀,CONFIRMED,1,고객지원팀,03_고객지원_구매.csv,6행 dept_nm열,,주관팀 검토자 A,2026-10-23
+R0161,HAS_WORK_TYPE,업무 성격,A028,FAQ 자동 갱신 Agent,WT2,콘텐츠 생성,CONFIRMED,1,콘텐츠 생성,03_고객지원_구매.csv,6행 task_type열,,주관팀 검토자 B,2026-10-24
+R0162,USES_RESULT_OF,결과사용,A029,발주서 생성 Agent,A005,단가 조회 Agent,CONFIRMED,1,단가 조회 Agent,03_고객지원_구매.csv,7행 linked_agent열,,주관팀 검토자 A,2026-10-23
+R0163,ACCESSES_DATA,데이터사용,A029,발주서 생성 Agent,D024,거래처 정보,CONFIRMED,1,거래처 DB,03_고객지원_구매.csv,7행 data_used열,,주관팀 검토자 B,2026-10-24
+R0164,ACCESSES_DATA,데이터사용,A029,발주서 생성 Agent,D028,구매 발주 이력,CONFIRMED,1,PO 이력,03_고객지원_구매.csv,7행 data_used열,,주관팀 검토자 A,2026-10-23
+R0165,USES_PLATFORM,사용 플랫폼,A029,발주서 생성 Agent,P03,SAP,CANDIDATE,1,ERP 구매모듈,03_고객지원_구매.csv,7행 system열,어떤 ERP인지 불명확 (SAP 구매 모듈로 추정),,
+R0166,BELONGS_TO,소속,A029,발주서 생성 Agent,DEP08,구매팀,CONFIRMED,1,구매팀,03_고객지원_구매.csv,7행 dept_nm열,,주관팀 검토자 A,2026-10-23
+R0167,HAS_WORK_TYPE,업무 성격,A029,발주서 생성 Agent,WT1,문서 작성,CONFIRMED,1,문서 작성,03_고객지원_구매.csv,7행 task_type열,,주관팀 검토자 B,2026-10-24
+R0168,ACCESSES_DATA,데이터사용,A030,견적 비교 Agent,D024,거래처 정보,CONFIRMED,1,공급업체 목록,03_고객지원_구매.csv,8행 data_used열,,주관팀 검토자 A,2026-10-23
+R0169,ACCESSES_DATA,데이터사용,A030,견적 비교 Agent,D028,구매 발주 이력,CONFIRMED,1,구매 발주 이력,03_고객지원_구매.csv,8행 data_used열,,주관팀 검토자 B,2026-10-24
+R0170,USES_PLATFORM,사용 플랫폼,A030,견적 비교 Agent,P03,SAP,CONFIRMED,1,SAP,03_고객지원_구매.csv,8행 system열,,주관팀 검토자 A,2026-10-23
+R0171,USES_PLATFORM,사용 플랫폼,A030,견적 비교 Agent,P12,사내 메일,CONFIRMED,1,메일,03_고객지원_구매.csv,8행 system열,,주관팀 검토자 B,2026-10-24
+R0172,BELONGS_TO,소속,A030,견적 비교 Agent,DEP08,구매팀,CONFIRMED,1,구매팀,03_고객지원_구매.csv,8행 dept_nm열,,주관팀 검토자 A,2026-10-23
+R0173,HAS_WORK_TYPE,업무 성격,A030,견적 비교 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,03_고객지원_구매.csv,8행 task_type열,,주관팀 검토자 B,2026-10-24
+R0174,USES_RESULT_OF,결과사용,A031,구매 계약 검토 Agent,A044,계약서 검토 Agent,CONFIRMED,2,계약서 검토 Agent || 참고로 구매팀의 구매 계약 검토 Agent가 이 Agent의 검토 결과를 받아 씁니다.,03_고객지원_구매.csv || 05_법무_경영기획.docx,9행 linked_agent열 || 문단 5 문장 4,,주관팀 검토자 A,2026-10-23
+R0175,ACCESSES_DATA,데이터사용,A031,구매 계약 검토 Agent,D006,계약서 원문,CONFIRMED,1,구매 계약서,03_고객지원_구매.csv,9행 data_used열,,주관팀 검토자 B,2026-10-24
+R0176,ACCESSES_DATA,데이터사용,A031,구매 계약 검토 Agent,D024,거래처 정보,CONFIRMED,1,거래처 정보,03_고객지원_구매.csv,9행 data_used열,,주관팀 검토자 A,2026-10-23
+R0177,USES_PLATFORM,사용 플랫폼,A031,구매 계약 검토 Agent,P14,DocuSign,CONFIRMED,1,도큐사인,03_고객지원_구매.csv,9행 system열,,주관팀 검토자 B,2026-10-24
+R0178,BELONGS_TO,소속,A031,구매 계약 검토 Agent,DEP08,구매팀,CONFIRMED,1,구매팀,03_고객지원_구매.csv,9행 dept_nm열,,주관팀 검토자 A,2026-10-23
+R0179,HAS_WORK_TYPE,업무 성격,A031,구매 계약 검토 Agent,WT4,검토·심사,CONFIRMED,1,검토·심사,03_고객지원_구매.csv,9행 task_type열,,주관팀 검토자 B,2026-10-24
+R0180,ACCESSES_DATA,데이터사용,A032,재고 보충 알림 Agent,D004,재고 현황,CONFIRMED,1,재고 데이터,03_고객지원_구매.csv,10행 data_used열,,주관팀 검토자 A,2026-10-23
+R0181,ACCESSES_DATA,데이터사용,A032,재고 보충 알림 Agent,D028,구매 발주 이력,CONFIRMED,1,발주 이력,03_고객지원_구매.csv,10행 data_used열,,주관팀 검토자 B,2026-10-24
+R0182,USES_PLATFORM,사용 플랫폼,A032,재고 보충 알림 Agent,P03,SAP,CONFIRMED,1,SAP,03_고객지원_구매.csv,10행 system열,,주관팀 검토자 A,2026-10-23
+R0183,BELONGS_TO,소속,A032,재고 보충 알림 Agent,DEP08,구매팀,CONFIRMED,1,구매,03_고객지원_구매.csv,10행 dept_nm열,,주관팀 검토자 B,2026-10-24
+R0184,HAS_WORK_TYPE,업무 성격,A032,재고 보충 알림 Agent,WT6,모니터링,CONFIRMED,1,모니터링,03_고객지원_구매.csv,10행 task_type열,,주관팀 검토자 A,2026-10-23
+R0185,ACCESSES_DATA,데이터사용,A033,협력사 평가 Agent,D024,거래처 정보,CONFIRMED,1,협력사 목록,03_고객지원_구매.csv,11행 data_used열,,주관팀 검토자 B,2026-10-24
+R0186,USES_PLATFORM,사용 플랫폼,A033,협력사 평가 Agent,P07,SharePoint,CONFIRMED,1,SharePoint,03_고객지원_구매.csv,11행 system열,,주관팀 검토자 A,2026-10-23
+R0187,BELONGS_TO,소속,A033,협력사 평가 Agent,DEP08,구매팀,CONFIRMED,1,구매팀,03_고객지원_구매.csv,11행 dept_nm열,,주관팀 검토자 B,2026-10-24
+R0188,HAS_WORK_TYPE,업무 성격,A033,협력사 평가 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,03_고객지원_구매.csv,11행 task_type열,,주관팀 검토자 A,2026-10-23
+R0189,ACCESSES_DATA,데이터사용,A034,채용 서류 1차 검토 Agent,D019,지원자 정보,CONFIRMED,1,이력서,04_인사_재무.xlsx,Agent 현황!H2,,주관팀 검토자 B,2026-10-24
+R0190,ACCESSES_DATA,데이터사용,A034,채용 서류 1차 검토 Agent,D020,직무기술서,CONFIRMED,1,JD,04_인사_재무.xlsx,Agent 현황!H2,,주관팀 검토자 A,2026-10-23
+R0191,USES_PLATFORM,사용 플랫폼,A034,채용 서류 1차 검토 Agent,P04,Workday,CONFIRMED,1,워크데이 채용,04_인사_재무.xlsx,Agent 현황!G2,,주관팀 검토자 B,2026-10-24
+R0192,BELONGS_TO,소속,A034,채용 서류 1차 검토 Agent,DEP06,인사팀,CONFIRMED,1,HR팀,04_인사_재무.xlsx,Agent 현황!C2,,주관팀 검토자 A,2026-10-23
+R0193,HAS_WORK_TYPE,업무 성격,A034,채용 서류 1차 검토 Agent,WT4,검토·심사,CONFIRMED,1,검토·심사,04_인사_재무.xlsx,Agent 현황!E2,,주관팀 검토자 B,2026-10-24
+R0194,ACCESSES_DATA,데이터사용,A035,면접 일정 조율 Agent,D019,지원자 정보,CONFIRMED,1,지원자 연락처,04_인사_재무.xlsx,Agent 현황!H3,,주관팀 검토자 A,2026-10-23
+R0195,USES_PLATFORM,사용 플랫폼,A035,면접 일정 조율 Agent,P06,Microsoft Teams,CONFIRMED,1,MS Teams,04_인사_재무.xlsx,Agent 현황!G3,,주관팀 검토자 B,2026-10-24
+R0196,USES_PLATFORM,사용 플랫폼,A035,면접 일정 조율 Agent,P12,사내 메일,CONFIRMED,1,아웃룩,04_인사_재무.xlsx,Agent 현황!G3,,주관팀 검토자 A,2026-10-23
+R0197,BELONGS_TO,소속,A035,면접 일정 조율 Agent,DEP06,인사팀,CONFIRMED,1,인사 팀,04_인사_재무.xlsx,Agent 현황!C3,,주관팀 검토자 B,2026-10-24
+R0198,HAS_WORK_TYPE,업무 성격,A035,면접 일정 조율 Agent,WT8,자동화 처리,CONFIRMED,1,자동화 처리,04_인사_재무.xlsx,Agent 현황!E3,,주관팀 검토자 A,2026-10-23
+R0199,ACCESSES_DATA,데이터사용,A036,사내 규정 Q&A Agent,D021,사내 규정집,CONFIRMED,1,취업규칙 등 규정,04_인사_재무.xlsx,Agent 현황!H4,,주관팀 검토자 B,2026-10-24
+R0200,USES_PLATFORM,사용 플랫폼,A036,사내 규정 Q&A Agent,P06,Microsoft Teams,CONFIRMED,1,Teams,04_인사_재무.xlsx,Agent 현황!G4,,주관팀 검토자 A,2026-10-23
+R0201,USES_PLATFORM,사용 플랫폼,A036,사내 규정 Q&A Agent,P07,SharePoint,CONFIRMED,1,쉐어포인트,04_인사_재무.xlsx,Agent 현황!G4,,주관팀 검토자 B,2026-10-24
+R0202,BELONGS_TO,소속,A036,사내 규정 Q&A Agent,DEP06,인사팀,CONFIRMED,1,인사팀,04_인사_재무.xlsx,Agent 현황!C4,,주관팀 검토자 A,2026-10-23
+R0203,HAS_WORK_TYPE,업무 성격,A036,사내 규정 Q&A Agent,WT7,검색·요약,CONFIRMED,1,검색·요약,04_인사_재무.xlsx,Agent 현황!E4,,주관팀 검토자 B,2026-10-24
+R0204,ACCESSES_DATA,데이터사용,A037,퇴사 예측 분석 Agent,D014,임직원 인사정보,CONFIRMED,1,인사DB,04_인사_재무.xlsx,Agent 현황!H5,,주관팀 검토자 A,2026-10-23
+R0205,ACCESSES_DATA,데이터사용,A037,퇴사 예측 분석 Agent,D022,급여 정보,CONFIRMED,1,급여데이터,04_인사_재무.xlsx,Agent 현황!H5,,주관팀 검토자 B,2026-10-24
+R0206,USES_PLATFORM,사용 플랫폼,A037,퇴사 예측 분석 Agent,P04,Workday,CONFIRMED,1,Workday,04_인사_재무.xlsx,Agent 현황!G5,,주관팀 검토자 A,2026-10-23
+R0207,BELONGS_TO,소속,A037,퇴사 예측 분석 Agent,DEP06,인사팀,CONFIRMED,1,인사팀,04_인사_재무.xlsx,Agent 현황!C5,,주관팀 검토자 B,2026-10-24
+R0208,HAS_WORK_TYPE,업무 성격,A037,퇴사 예측 분석 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,04_인사_재무.xlsx,Agent 현황!E5,,주관팀 검토자 A,2026-10-23
+R0209,ACCESSES_DATA,데이터사용,A038,교육 이수 관리 Agent,D014,임직원 인사정보,CONFIRMED,1,HR 마스터,04_인사_재무.xlsx,Agent 현황!H6,,주관팀 검토자 B,2026-10-24
+R0210,USES_PLATFORM,사용 플랫폼,A038,교육 이수 관리 Agent,P04,Workday,CONFIRMED,1,Workday,04_인사_재무.xlsx,Agent 현황!G6,,주관팀 검토자 A,2026-10-23
+R0211,USES_PLATFORM,사용 플랫폼,A038,교육 이수 관리 Agent,P12,사내 메일,CONFIRMED,1,사내 메일,04_인사_재무.xlsx,Agent 현황!G6,,주관팀 검토자 B,2026-10-24
+R0212,BELONGS_TO,소속,A038,교육 이수 관리 Agent,DEP06,인사팀,CONFIRMED,1,인사팀,04_인사_재무.xlsx,Agent 현황!C6,,주관팀 검토자 A,2026-10-23
+R0213,HAS_WORK_TYPE,업무 성격,A038,교육 이수 관리 Agent,WT6,모니터링,CONFIRMED,1,모니터링,04_인사_재무.xlsx,Agent 현황!E6,,주관팀 검토자 B,2026-10-24
+R0214,ACCESSES_DATA,데이터사용,A039,경비 정산 검토 Agent,D021,사내 규정집,CONFIRMED,1,경비 규정,04_인사_재무.xlsx,Agent 현황!H7,,주관팀 검토자 A,2026-10-23
+R0215,ACCESSES_DATA,데이터사용,A039,경비 정산 검토 Agent,D023,회계 전표,CONFIRMED,1,전표 데이터,04_인사_재무.xlsx,Agent 현황!H7,,주관팀 검토자 B,2026-10-24
+R0216,USES_PLATFORM,사용 플랫폼,A039,경비 정산 검토 Agent,P03,SAP,CONFIRMED,1,에스에이피,04_인사_재무.xlsx,Agent 현황!G7,,주관팀 검토자 A,2026-10-23
+R0217,BELONGS_TO,소속,A039,경비 정산 검토 Agent,DEP07,재무팀,CONFIRMED,1,재무팀,04_인사_재무.xlsx,Agent 현황!C7,,주관팀 검토자 B,2026-10-24
+R0218,HAS_WORK_TYPE,업무 성격,A039,경비 정산 검토 Agent,WT4,검토·심사,CONFIRMED,1,검토·심사,04_인사_재무.xlsx,Agent 현황!E7,,주관팀 검토자 A,2026-10-23
+R0219,USES_RESULT_OF,결과사용,A040,월 결산 리포트 Agent,A039,경비 정산 검토 Agent,CONFIRMED,1,경비 정산 검토 Agent,04_인사_재무.xlsx,Agent 현황!I8,,주관팀 검토자 B,2026-10-24
+R0220,ACCESSES_DATA,데이터사용,A040,월 결산 리포트 Agent,D005,매출 실적,CONFIRMED,1,매출 실적표,04_인사_재무.xlsx,Agent 현황!H8,,주관팀 검토자 A,2026-10-23
+R0221,ACCESSES_DATA,데이터사용,A040,월 결산 리포트 Agent,D023,회계 전표,CONFIRMED,1,회계 전표,04_인사_재무.xlsx,Agent 현황!H8,,주관팀 검토자 B,2026-10-24
+R0222,USES_PLATFORM,사용 플랫폼,A040,월 결산 리포트 Agent,P03,SAP,CONFIRMED,1,SAP,04_인사_재무.xlsx,Agent 현황!G8,,주관팀 검토자 A,2026-10-23
+R0223,USES_PLATFORM,사용 플랫폼,A040,월 결산 리포트 Agent,P07,SharePoint,CONFIRMED,1,SharePoint,04_인사_재무.xlsx,Agent 현황!G8,,주관팀 검토자 B,2026-10-24
+R0224,BELONGS_TO,소속,A040,월 결산 리포트 Agent,DEP07,재무팀,CONFIRMED,1,재무팀,04_인사_재무.xlsx,Agent 현황!C8,,주관팀 검토자 A,2026-10-23
+R0225,HAS_WORK_TYPE,업무 성격,A040,월 결산 리포트 Agent,WT1,문서 작성,CONFIRMED,1,문서 작성,04_인사_재무.xlsx,Agent 현황!E8,,주관팀 검토자 B,2026-10-24
+R0226,ACCESSES_DATA,데이터사용,A041,급여 이상 탐지 Agent,D014,임직원 인사정보,CONFIRMED,1,인사 정보,04_인사_재무.xlsx,Agent 현황!H9,,주관팀 검토자 A,2026-10-23
+R0227,ACCESSES_DATA,데이터사용,A041,급여 이상 탐지 Agent,D022,급여 정보,CONFIRMED,1,급여 DB,04_인사_재무.xlsx,Agent 현황!H9,,주관팀 검토자 B,2026-10-24
+R0228,USES_PLATFORM,사용 플랫폼,A041,급여 이상 탐지 Agent,P03,SAP,CONFIRMED,1,SAP HR,04_인사_재무.xlsx,Agent 현황!G9,,주관팀 검토자 A,2026-10-23
+R0229,USES_PLATFORM,사용 플랫폼,A041,급여 이상 탐지 Agent,P04,Workday,CONFIRMED,1,Workday,04_인사_재무.xlsx,Agent 현황!G9,,주관팀 검토자 B,2026-10-24
+R0230,USES_PLATFORM,사용 플랫폼,A041,급여 이상 탐지 Agent,P12,사내 메일,CONFIRMED,1,사내 메일,04_인사_재무.xlsx,Agent 현황!G9,,주관팀 검토자 A,2026-10-23
+R0231,BELONGS_TO,소속,A041,급여 이상 탐지 Agent,DEP07,재무팀,CONFIRMED,1,재무팀,04_인사_재무.xlsx,Agent 현황!C9,,주관팀 검토자 B,2026-10-24
+R0232,HAS_WORK_TYPE,업무 성격,A041,급여 이상 탐지 Agent,WT6,모니터링,CONFIRMED,1,모니터링,04_인사_재무.xlsx,Agent 현황!E9,,주관팀 검토자 A,2026-10-23
+R0233,ACCESSES_DATA,데이터사용,A042,거래처 신용 분석 Agent,D005,매출 실적,CONFIRMED,1,매출 실적,04_인사_재무.xlsx,Agent 현황!H10,,주관팀 검토자 B,2026-10-24
+R0234,ACCESSES_DATA,데이터사용,A042,거래처 신용 분석 Agent,D024,거래처 정보,CONFIRMED,1,협력사 목록,04_인사_재무.xlsx,Agent 현황!H10,,주관팀 검토자 A,2026-10-23
+R0235,USES_PLATFORM,사용 플랫폼,A042,거래처 신용 분석 Agent,P03,SAP,CONFIRMED,1,SAP,04_인사_재무.xlsx,Agent 현황!G10,,주관팀 검토자 B,2026-10-24
+R0236,BELONGS_TO,소속,A042,거래처 신용 분석 Agent,DEP07,재무팀,CONFIRMED,1,재무팀,04_인사_재무.xlsx,Agent 현황!C10,,주관팀 검토자 A,2026-10-23
+R0237,HAS_WORK_TYPE,업무 성격,A042,거래처 신용 분석 Agent,WT3,데이터 분석,CONFIRMED,1,데이터 분석,04_인사_재무.xlsx,Agent 현황!E10,,주관팀 검토자 B,2026-10-24
+R0238,USES_RESULT_OF,결과사용,A043,세무 신고 보조 Agent,A040,월 결산 리포트 Agent,CONFIRMED,1,월 결산 리포트 Agent,04_인사_재무.xlsx,Agent 현황!I11,,주관팀 검토자 A,2026-10-23
+R0239,ACCESSES_DATA,데이터사용,A043,세무 신고 보조 Agent,D023,회계 전표,CONFIRMED,1,회계 전표,04_인사_재무.xlsx,Agent 현황!H11,,주관팀 검토자 B,2026-10-24
+R0240,ACCESSES_DATA,데이터사용,A043,세무 신고 보조 Agent,D025,법령 자료,CONFIRMED,1,세법 자료,04_인사_재무.xlsx,Agent 현황!H11,,주관팀 검토자 A,2026-10-23
+R0241,USES_PLATFORM,사용 플랫폼,A043,세무 신고 보조 Agent,P07,SharePoint,CONFIRMED,1,SharePoint,04_인사_재무.xlsx,Agent 현황!G11,,주관팀 검토자 B,2026-10-24
+R0242,BELONGS_TO,소속,A043,세무 신고 보조 Agent,DEP07,재무팀,CONFIRMED,1,재무,04_인사_재무.xlsx,Agent 현황!C11,,주관팀 검토자 A,2026-10-23
+R0243,HAS_WORK_TYPE,업무 성격,A043,세무 신고 보조 Agent,WT1,문서 작성,CONFIRMED,1,문서 작성,04_인사_재무.xlsx,Agent 현황!E11,,주관팀 검토자 B,2026-10-24
+R0244,ACCESSES_DATA,데이터사용,A044,계약서 검토 Agent,D006,계약서 원문,CONFIRMED,1,"도큐사인과 쉐어포인트에 연동되어 있고, 계약서와 관련 법령을 참고합니다.",05_법무_경영기획.docx,문단 5 문장 3,,주관팀 검토자 A,2026-10-23
+R0245,ACCESSES_DATA,데이터사용,A044,계약서 검토 Agent,D025,법령 자료,CONFIRMED,1,"도큐사인과 쉐어포인트에 연동되어 있고, 계약서와 관련 법령을 참고합니다.",05_법무_경영기획.docx,문단 5 문장 3,,주관팀 검토자 B,2026-10-24
+R0246,USES_PLATFORM,사용 플랫폼,A044,계약서 검토 Agent,P07,SharePoint,CONFIRMED,1,"도큐사인과 쉐어포인트에 연동되어 있고, 계약서와 관련 법령을 참고합니다.",05_법무_경영기획.docx,문단 5 문장 3,,주관팀 검토자 A,2026-10-23
+R0247,USES_PLATFORM,사용 플랫폼,A044,계약서 검토 Agent,P14,DocuSign,CONFIRMED,1,"도큐사인과 쉐어포인트에 연동되어 있고, 계약서와 관련 법령을 참고합니다.",05_법무_경영기획.docx,문단 5 문장 3,,주관팀 검토자 B,2026-10-24
+R0248,BELONGS_TO,소속,A044,계약서 검토 Agent,DEP09,법무팀,CONFIRMED,1,법무팀 조현우 변호사가 관리하는 Agent입니다.,05_법무_경영기획.docx,문단 5 문장 1,,주관팀 검토자 A,2026-10-23
+R0249,HAS_WORK_TYPE,업무 성격,A044,계약서 검토 Agent,WT4,검토·심사,CONFIRMED,1,"계약서를 올리면 독소 조항과 표준 대비 바뀐 부분을 찾아 표시해 주며, 업무 성격은 검토·심사입니다.",05_법무_경영기획.docx,문단 5 문장 2,,주관팀 검토자 B,2026-10-24
+R0250,ACCESSES_DATA,데이터사용,A045,법령 개정 모니터링 Agent,D025,법령 자료,CONFIRMED,1,"사내 메일로 결과를 보내며, 법제처 법령 데이터를 참고합니다.",05_법무_경영기획.docx,문단 7 문장 3,,주관팀 검토자 A,2026-10-23
+R0251,USES_PLATFORM,사용 플랫폼,A045,법령 개정 모니터링 Agent,P12,사내 메일,CONFIRMED,1,"사내 메일로 결과를 보내며, 법제처 법령 데이터를 참고합니다.",05_법무_경영기획.docx,문단 7 문장 3,,주관팀 검토자 B,2026-10-24
+R0252,BELONGS_TO,소속,A045,법령 개정 모니터링 Agent,DEP09,법무팀,CONFIRMED,1,같은 법무팀에서 조현우 변호사가 함께 맡고 있습니다.,05_법무_경영기획.docx,문단 7 문장 1,,주관팀 검토자 A,2026-10-23
+R0253,HAS_WORK_TYPE,업무 성격,A045,법령 개정 모니터링 Agent,WT6,모니터링,CONFIRMED,1,업무 관련 법령의 개정 사항을 매일 확인해 요약 메일을 보내는 모니터링 Agent입니다.,05_법무_경영기획.docx,문단 7 문장 2,,주관팀 검토자 B,2026-10-24
+R0254,ACCESSES_DATA,데이터사용,A046,개인정보 처리 점검 Agent,D001,CRM 고객정보,CANDIDATE,1,"SharePoint, Workday, Salesforce에 연결되어 각 부서 고객 데이터와 임직원 정보를 확인합니다.",05_법무_경영기획.docx,문단 9 문장 3,범위가 넓어 CRM 고객정보만 뜻하는지 확인 필요,,
+R0255,ACCESSES_DATA,데이터사용,A046,개인정보 처리 점검 Agent,D014,임직원 인사정보,CONFIRMED,1,"SharePoint, Workday, Salesforce에 연결되어 각 부서 고객 데이터와 임직원 정보를 확인합니다.",05_법무_경영기획.docx,문단 9 문장 3,,주관팀 검토자 B,2026-10-24
+R0256,USES_PLATFORM,사용 플랫폼,A046,개인정보 처리 점검 Agent,P01,Salesforce,CONFIRMED,1,"SharePoint, Workday, Salesforce에 연결되어 각 부서 고객 데이터와 임직원 정보를 확인합니다.",05_법무_경영기획.docx,문단 9 문장 3,,주관팀 검토자 A,2026-10-23
+R0257,USES_PLATFORM,사용 플랫폼,A046,개인정보 처리 점검 Agent,P04,Workday,CONFIRMED,1,"SharePoint, Workday, Salesforce에 연결되어 각 부서 고객 데이터와 임직원 정보를 확인합니다.",05_법무_경영기획.docx,문단 9 문장 3,,주관팀 검토자 B,2026-10-24
+R0258,USES_PLATFORM,사용 플랫폼,A046,개인정보 처리 점검 Agent,P07,SharePoint,CONFIRMED,1,"SharePoint, Workday, Salesforce에 연결되어 각 부서 고객 데이터와 임직원 정보를 확인합니다.",05_법무_경영기획.docx,문단 9 문장 3,,주관팀 검토자 A,2026-10-23
+R0259,BELONGS_TO,소속,A046,개인정보 처리 점검 Agent,DEP09,법무팀,CONFIRMED,1,법무팀 신다은 님이 담당합니다.,05_법무_경영기획.docx,문단 9 문장 1,,주관팀 검토자 B,2026-10-24
+R0260,HAS_WORK_TYPE,업무 성격,A046,개인정보 처리 점검 Agent,WT4,검토·심사,CONFIRMED,1,각 부서의 개인정보 처리 현황이 내부 지침에 맞는지 점검하는 검토·심사 Agent입니다.,05_법무_경영기획.docx,문단 9 문장 2,,주관팀 검토자 A,2026-10-23
+R0261,USES_RESULT_OF,결과사용,A047,소송 자료 요약 Agent,A042,거래처 신용 분석 Agent,CANDIDATE,1,거래처 분쟁 건은 분석 Agent가 정리한 거래처 결과를 함께 참고합니다.,05_법무_경영기획.docx,문단 11 문장 4,'분석 Agent'와 부분 일치하는 Agent가 여러 개 — 후보를 보여주고 사용자 선택 필요 (문맥상 '거래처'라 거래처 신용 분석 Agent가 유력),,
+R0262,ACCESSES_DATA,데이터사용,A047,소송 자료 요약 Agent,D006,계약서 원문,CONFIRMED,1,소송 관련 문서와 계약서를 검색해 쟁점을 요약하는 검색·요약 Agent입니다.,05_법무_경영기획.docx,문단 11 문장 2,,주관팀 검토자 A,2026-10-23
+R0263,USES_PLATFORM,사용 플랫폼,A047,소송 자료 요약 Agent,P07,SharePoint,CONFIRMED,1,쉐어포인트에 연동되어 있습니다.,05_법무_경영기획.docx,문단 11 문장 3,,주관팀 검토자 B,2026-10-24
+R0264,BELONGS_TO,소속,A047,소송 자료 요약 Agent,DEP09,법무팀,CONFIRMED,1,법무팀 담당자가 관리합니다.,05_법무_경영기획.docx,문단 11 문장 1,,주관팀 검토자 A,2026-10-23
+R0265,HAS_WORK_TYPE,업무 성격,A047,소송 자료 요약 Agent,WT7,검색·요약,CONFIRMED,1,소송 관련 문서와 계약서를 검색해 쟁점을 요약하는 검색·요약 Agent입니다.,05_법무_경영기획.docx,문단 11 문장 2,,주관팀 검토자 B,2026-10-24
+R0266,USES_RESULT_OF,결과사용,A048,NDA 초안 작성 Agent,A044,계약서 검토 Agent,CONFIRMED,1,초안이 나오면 계약서 검토 Agent를 호출해 검토 결과를 함께 붙입니다.,05_법무_경영기획.docx,문단 13 문장 4,,주관팀 검토자 A,2026-10-23
+R0267,ACCESSES_DATA,데이터사용,A048,NDA 초안 작성 Agent,D007,표준 계약서 양식,CONFIRMED,1,DocuSign과 연동되며 표준 계약 템플릿을 바탕으로 작성합니다.,05_법무_경영기획.docx,문단 13 문장 3,,주관팀 검토자 B,2026-10-24
+R0268,USES_PLATFORM,사용 플랫폼,A048,NDA 초안 작성 Agent,P14,DocuSign,CONFIRMED,1,DocuSign과 연동되며 표준 계약 템플릿을 바탕으로 작성합니다.,05_법무_경영기획.docx,문단 13 문장 3,,주관팀 검토자 A,2026-10-23
+R0269,BELONGS_TO,소속,A048,NDA 초안 작성 Agent,DEP09,법무팀,CONFIRMED,1,신다은 님이 관리하는 법무팀 Agent입니다.,05_법무_경영기획.docx,문단 13 문장 1,,주관팀 검토자 B,2026-10-24
+R0270,HAS_WORK_TYPE,업무 성격,A048,NDA 초안 작성 Agent,WT1,문서 작성,CONFIRMED,1,거래 상대방 정보를 받아 비밀유지계약서 초안을 만드는 문서 작성 Agent입니다.,05_법무_경영기획.docx,문단 13 문장 2,,주관팀 검토자 A,2026-10-23
+R0271,USES_RESULT_OF,결과사용,A049,경영 현황 요약 Agent,A006,영업 주간 리포트 Agent,CONFIRMED,1,월 결산 리포트 Agent와 영업 주간 리포트 Agent의 결과를 가져와 요약에 넣습니다.,05_법무_경영기획.docx,문단 15 문장 4,,주관팀 검토자 B,2026-10-24
+R0272,USES_RESULT_OF,결과사용,A049,경영 현황 요약 Agent,A040,월 결산 리포트 Agent,CONFIRMED,1,월 결산 리포트 Agent와 영업 주간 리포트 Agent의 결과를 가져와 요약에 넣습니다.,05_법무_경영기획.docx,문단 15 문장 4,,주관팀 검토자 A,2026-10-23
+R0273,ACCESSES_DATA,데이터사용,A049,경영 현황 요약 Agent,D005,매출 실적,CONFIRMED,1,"SharePoint와 팀즈에 연동되어 있고, 매출 실적과 재무 전표를 참고합니다.",05_법무_경영기획.docx,문단 15 문장 3,,주관팀 검토자 B,2026-10-24
+R0274,ACCESSES_DATA,데이터사용,A049,경영 현황 요약 Agent,D023,회계 전표,CONFIRMED,1,"SharePoint와 팀즈에 연동되어 있고, 매출 실적과 재무 전표를 참고합니다.",05_법무_경영기획.docx,문단 15 문장 3,,주관팀 검토자 A,2026-10-23
+R0275,USES_PLATFORM,사용 플랫폼,A049,경영 현황 요약 Agent,P06,Microsoft Teams,CONFIRMED,1,"SharePoint와 팀즈에 연동되어 있고, 매출 실적과 재무 전표를 참고합니다.",05_법무_경영기획.docx,문단 15 문장 3,,주관팀 검토자 B,2026-10-24
+R0276,USES_PLATFORM,사용 플랫폼,A049,경영 현황 요약 Agent,P07,SharePoint,CONFIRMED,1,"SharePoint와 팀즈에 연동되어 있고, 매출 실적과 재무 전표를 참고합니다.",05_법무_경영기획.docx,문단 15 문장 3,,주관팀 검토자 A,2026-10-23
+R0277,BELONGS_TO,소속,A049,경영 현황 요약 Agent,DEP10,경영기획팀,CONFIRMED,1,경영기획팀 한지수 님이 관리합니다.,05_법무_경영기획.docx,문단 15 문장 1,,주관팀 검토자 B,2026-10-24
+R0278,HAS_WORK_TYPE,업무 성격,A049,경영 현황 요약 Agent,WT7,검색·요약,CONFIRMED,1,각 부서 리포트를 모아 경영진용 주간 요약을 만드는 검색·요약 Agent입니다.,05_법무_경영기획.docx,문단 15 문장 2,,주관팀 검토자 A,2026-10-23
+R0279,ACCESSES_DATA,데이터사용,A050,시장 동향 리서치 Agent,D029,외부 시장 자료,CONFIRMED,1,"Teams로 결과를 공유하고, 외부 리서치 자료를 참고합니다.",05_법무_경영기획.docx,문단 17 문장 3,,주관팀 검토자 B,2026-10-24
+R0280,USES_PLATFORM,사용 플랫폼,A050,시장 동향 리서치 Agent,P06,Microsoft Teams,CONFIRMED,1,"Teams로 결과를 공유하고, 외부 리서치 자료를 참고합니다.",05_법무_경영기획.docx,문단 17 문장 3,,주관팀 검토자 A,2026-10-23
+R0281,BELONGS_TO,소속,A050,시장 동향 리서치 Agent,DEP10,경영기획팀,CONFIRMED,1,경영기획팀 한지수 님이 함께 관리합니다.,05_법무_경영기획.docx,문단 17 문장 1,,주관팀 검토자 B,2026-10-24
+R0282,HAS_WORK_TYPE,업무 성격,A050,시장 동향 리서치 Agent,WT7,검색·요약,CONFIRMED,1,외부 산업 리포트와 뉴스를 모아 시장 동향을 정리하는 검색·요약 Agent입니다.,05_법무_경영기획.docx,문단 17 문장 2,,주관팀 검토자 A,2026-10-23
+R0283,USES_RESULT_OF,결과사용,A051,이사회 자료 작성 Agent,A049,경영 현황 요약 Agent,CONFIRMED,1,경영 현황 요약 Agent를 호출해 그 결과를 바탕으로 작성합니다.,05_법무_경영기획.docx,문단 19 문장 4,,주관팀 검토자 B,2026-10-24
+R0284,ACCESSES_DATA,데이터사용,A051,이사회 자료 작성 Agent,D005,매출 실적,CANDIDATE,1,"SharePoint에 연동되어 있고, 경영 데이터 전반을 참고합니다.",05_법무_경영기획.docx,문단 19 문장 3,범위가 넓어 어떤 데이터인지 불명확 (매출 실적으로 추정),,
+R0285,USES_PLATFORM,사용 플랫폼,A051,이사회 자료 작성 Agent,P07,SharePoint,CONFIRMED,1,"SharePoint에 연동되어 있고, 경영 데이터 전반을 참고합니다.",05_법무_경영기획.docx,문단 19 문장 3,,주관팀 검토자 B,2026-10-24
+R0286,BELONGS_TO,소속,A051,이사회 자료 작성 Agent,DEP10,경영기획팀,CONFIRMED,1,경영기획팀 오태경 님이 관리합니다.,05_법무_경영기획.docx,문단 19 문장 1,,주관팀 검토자 A,2026-10-23
+R0287,HAS_WORK_TYPE,업무 성격,A051,이사회 자료 작성 Agent,WT1,문서 작성,CONFIRMED,1,분기 이사회 보고 자료 초안을 쓰는 문서 작성 Agent입니다.,05_법무_경영기획.docx,문단 19 문장 2,,주관팀 검토자 B,2026-10-24
+R0288,ACCESSES_DATA,데이터사용,A052,예산 편성 보조 Agent,D022,급여 정보,CANDIDATE,1,SAP와 연동되어 회계 전표와 인건비 데이터를 씁니다.,05_법무_경영기획.docx,문단 21 문장 3,급여 정보에서 나온 집계인지 확인 필요 (급여 정보로 추정),,
+R0289,ACCESSES_DATA,데이터사용,A052,예산 편성 보조 Agent,D023,회계 전표,CONFIRMED,1,SAP와 연동되어 회계 전표와 인건비 데이터를 씁니다.,05_법무_경영기획.docx,문단 21 문장 3,,주관팀 검토자 B,2026-10-24
+R0290,USES_PLATFORM,사용 플랫폼,A052,예산 편성 보조 Agent,P03,SAP,CONFIRMED,1,SAP와 연동되어 회계 전표와 인건비 데이터를 씁니다.,05_법무_경영기획.docx,문단 21 문장 3,,주관팀 검토자 A,2026-10-23
+R0291,BELONGS_TO,소속,A052,예산 편성 보조 Agent,DEP10,경영기획팀,CONFIRMED,1,경영기획팀 오태경 님이 함께 맡고 있습니다.,05_법무_경영기획.docx,문단 21 문장 1,,주관팀 검토자 B,2026-10-24
+R0292,HAS_WORK_TYPE,업무 성격,A052,예산 편성 보조 Agent,WT3,데이터 분석,CONFIRMED,1,부서별 지출 실적으로 차년도 예산 초안을 산출하는 데이터 분석 Agent입니다.,05_법무_경영기획.docx,문단 21 문장 2,,주관팀 검토자 A,2026-10-23
+R0293,ACCESSES_DATA,데이터사용,A053,사내 공지 작성 Agent,D014,임직원 인사정보,CONFIRMED,1,"팀즈와 그룹웨어 메일에 연동되어 있고, 사내 규정과 임직원 정보를 참고합니다.",05_법무_경영기획.docx,문단 23 문장 3,,주관팀 검토자 B,2026-10-24
+R0294,ACCESSES_DATA,데이터사용,A053,사내 공지 작성 Agent,D021,사내 규정집,CONFIRMED,1,"팀즈와 그룹웨어 메일에 연동되어 있고, 사내 규정과 임직원 정보를 참고합니다.",05_법무_경영기획.docx,문단 23 문장 3,,주관팀 검토자 A,2026-10-23
+R0295,USES_PLATFORM,사용 플랫폼,A053,사내 공지 작성 Agent,P06,Microsoft Teams,CONFIRMED,1,"팀즈와 그룹웨어 메일에 연동되어 있고, 사내 규정과 임직원 정보를 참고합니다.",05_법무_경영기획.docx,문단 23 문장 3,,주관팀 검토자 B,2026-10-24
+R0296,USES_PLATFORM,사용 플랫폼,A053,사내 공지 작성 Agent,P12,사내 메일,CONFIRMED,1,"팀즈와 그룹웨어 메일에 연동되어 있고, 사내 규정과 임직원 정보를 참고합니다.",05_법무_경영기획.docx,문단 23 문장 3,,주관팀 검토자 A,2026-10-23
+R0297,BELONGS_TO,소속,A053,사내 공지 작성 Agent,DEP10,경영기획팀,CANDIDATE,1,"기획팀에서 사용하는 Agent로, 담당자는 아직 정해지지 않았습니다.",05_법무_경영기획.docx,문단 23 문장 1,경영기획팀과 같은 부서인지 확인 필요,,
+R0298,HAS_WORK_TYPE,업무 성격,A053,사내 공지 작성 Agent,WT2,콘텐츠 생성,CONFIRMED,1,경영진 메시지와 사내 공지문 초안을 만드는 콘텐츠 생성 Agent입니다.,05_법무_경영기획.docx,문단 23 문장 2,,주관팀 검토자 A,2026-10-23
+R0299,STORED_IN,저장 위치,D001,CRM 고객정보,P01,Salesforce,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D001/stored_in,,주관팀 검토자 B,2026-10-24
+R0300,STORED_IN,저장 위치,D002,상품 정보,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D002/stored_in,,주관팀 검토자 A,2026-10-23
+R0301,STORED_IN,저장 위치,D003,과거 견적 이력,P01,Salesforce,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D003/stored_in,,주관팀 검토자 B,2026-10-24
+R0302,STORED_IN,저장 위치,D004,재고 현황,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D004/stored_in,,주관팀 검토자 A,2026-10-23
+R0303,STORED_IN,저장 위치,D005,매출 실적,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D005/stored_in,,주관팀 검토자 B,2026-10-24
+R0304,STORED_IN,저장 위치,D006,계약서 원문,P07,SharePoint,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D006/stored_in,,주관팀 검토자 A,2026-10-23
+R0305,STORED_IN,저장 위치,D007,표준 계약서 양식,P07,SharePoint,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D007/stored_in,,주관팀 검토자 B,2026-10-24
+R0306,STORED_IN,저장 위치,D008,캠페인 성과 데이터,P02,HubSpot,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D008/stored_in,,주관팀 검토자 A,2026-10-23
+R0307,STORED_IN,저장 위치,D009,웹 방문 로그,P13,Google Analytics,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D009/stored_in,,주관팀 검토자 B,2026-10-24
+R0308,STORED_IN,저장 위치,D010,브랜드 가이드라인,P07,SharePoint,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D010/stored_in,,주관팀 검토자 A,2026-10-23
+R0309,STORED_IN,저장 위치,D011,소스코드 저장소,P10,GitHub,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D011/stored_in,,주관팀 검토자 B,2026-10-24
+R0310,STORED_IN,저장 위치,D012,장애 로그,P16,Splunk,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D012/stored_in,,주관팀 검토자 A,2026-10-23
+R0311,STORED_IN,저장 위치,D013,사내 기술문서,P09,Confluence,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D013/stored_in,,주관팀 검토자 B,2026-10-24
+R0312,STORED_IN,저장 위치,D014,임직원 인사정보,P04,Workday,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D014/stored_in,,주관팀 검토자 A,2026-10-23
+R0313,STORED_IN,저장 위치,D015,시스템 접근 권한 목록,P17,Active Directory,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D015/stored_in,,주관팀 검토자 B,2026-10-24
+R0314,STORED_IN,저장 위치,D016,IT 문의 티켓,P08,Jira,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D016/stored_in,,주관팀 검토자 A,2026-10-23
+R0315,STORED_IN,저장 위치,D017,클라우드 비용 데이터,P15,AWS,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D017/stored_in,,주관팀 검토자 B,2026-10-24
+R0316,STORED_IN,저장 위치,D018,보안 로그,P16,Splunk,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D018/stored_in,,주관팀 검토자 A,2026-10-23
+R0317,STORED_IN,저장 위치,D019,지원자 정보,P04,Workday,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D019/stored_in,,주관팀 검토자 B,2026-10-24
+R0318,STORED_IN,저장 위치,D020,직무기술서,P04,Workday,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D020/stored_in,,주관팀 검토자 A,2026-10-23
+R0319,STORED_IN,저장 위치,D021,사내 규정집,P07,SharePoint,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D021/stored_in,,주관팀 검토자 B,2026-10-24
+R0320,STORED_IN,저장 위치,D022,급여 정보,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D022/stored_in,,주관팀 검토자 A,2026-10-23
+R0321,STORED_IN,저장 위치,D023,회계 전표,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D023/stored_in,,주관팀 검토자 B,2026-10-24
+R0322,STORED_IN,저장 위치,D024,거래처 정보,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D024/stored_in,,주관팀 검토자 A,2026-10-23
+R0323,STORED_IN,저장 위치,D026,FAQ 문서,P11,Zendesk,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D026/stored_in,,주관팀 검토자 B,2026-10-24
+R0324,STORED_IN,저장 위치,D027,고객 상담 이력,P11,Zendesk,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D027/stored_in,,주관팀 검토자 A,2026-10-23
+R0325,STORED_IN,저장 위치,D028,구매 발주 이력,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D028/stored_in,,주관팀 검토자 B,2026-10-24
+R0326,STORED_IN,저장 위치,D030,주문·결제 내역,P03,SAP,CONFIRMED,1,주관 팀이 정한 저장 위치,vocabulary/vocabulary.json,data_assets/D030/stored_in,,주관팀 검토자 A,2026-10-23

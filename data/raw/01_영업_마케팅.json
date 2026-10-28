@@ -1,0 +1,203 @@
+{
+  "submittedBy": "영업본부 / 마케팅본부",
+  "submittedAt": "2026.10.20",
+  "agents": [
+    {
+      "agentName": "견적서 자동작성 Agent",
+      "dept": "영업본부/기업영업팀",
+      "owner": "김민준 책임",
+      "category": "문서 작성",
+      "description": "고객 요청 메일을 받아 표준 견적서 초안을 생성",
+      "connectedPlatforms": [
+        "세일즈포스",
+        "사내메일"
+      ],
+      "dataSources": [
+        "세일즈포스 고객 데이터",
+        "단가표 엑셀",
+        "과거 견적 이력"
+      ],
+      "callsAgents": [
+        "단가 조회 Agent"
+      ],
+      "launchDate": "2026.03",
+      "monthlyUsage": "1,200",
+      "status": "운영"
+    },
+    {
+      "agentName": "단가 조회 Agent",
+      "dept": "영업팀",
+      "owner": "김민준",
+      "category": "검색·요약",
+      "description": "제품 코드로 최신 단가와 재고를 조회해 응답",
+      "connectedPlatforms": [
+        "ERP"
+      ],
+      "dataSources": [
+        "단가표",
+        "재고 데이터"
+      ],
+      "callsAgents": [],
+      "launchDate": "2026-02-15",
+      "monthlyUsage": "약 3천",
+      "status": "운영"
+    },
+    {
+      "agentName": "영업 주간 리포트 Agent",
+      "dept": "영업팀",
+      "owner": null,
+      "category": "데이터 분석",
+      "description": "주간 영업 실적을 집계해 보고서 초안을 작성하고 팀 채널에 공유",
+      "connectedPlatforms": [
+        "SFDC",
+        "슬랙"
+      ],
+      "dataSources": [
+        "영업 데이터 전반"
+      ],
+      "callsAgents": [
+        "견적서 자동작성 Agent"
+      ],
+      "launchDate": "4월 초",
+      "monthlyUsage": "약 50",
+      "status": "운영"
+    },
+    {
+      "agentName": "계약 갱신 알림 Agent",
+      "dept": "영업팀",
+      "owner": "박지훈",
+      "category": "모니터링",
+      "description": "계약 만료 60일 전 담당 영업에게 알림",
+      "connectedPlatforms": [
+        "Salesforce",
+        "사내 메일"
+      ],
+      "dataSources": [
+        "CRM 고객테이블",
+        "계약 문서"
+      ],
+      "callsAgents": [],
+      "launchDate": "26/6/10",
+      "monthlyUsage": "300",
+      "status": "운영"
+    },
+    {
+      "agentName": "리드 스코어링 Agent",
+      "dept": "영업팀",
+      "owner": "이서연 매니저",
+      "category": "데이터 분석",
+      "description": "잠재 고객의 구매 가능성을 점수화",
+      "connectedPlatforms": [
+        "Salesforce",
+        "허브스팟"
+      ],
+      "dataSources": [
+        "고객DB",
+        "웹 방문 로그"
+      ],
+      "callsAgents": [],
+      "launchDate": "2025/11",
+      "monthlyUsage": "500~800",
+      "status": "파일럿"
+    },
+    {
+      "agentName": "캠페인 문구 생성 Agent",
+      "dept": "마케팅팀",
+      "owner": "최유나",
+      "category": "콘텐츠 생성",
+      "description": "고객 세그먼트별 이메일 캠페인 문구 생성",
+      "connectedPlatforms": [
+        "HubSpot"
+      ],
+      "dataSources": [
+        "고객 데이터베이스",
+        "캠페인 성과 데이터"
+      ],
+      "callsAgents": [
+        "고객 분석 Agent"
+      ],
+      "launchDate": "Jan 2026",
+      "monthlyUsage": "2000",
+      "status": "운영"
+    },
+    {
+      "agentName": "타깃 고객 추출 Agent",
+      "dept": "마케팅팀",
+      "owner": "최유나",
+      "category": "데이터 분석",
+      "description": "고객 세그먼트와 구매 이력으로 캠페인 대상 고객 목록 추출",
+      "connectedPlatforms": [
+        "세일즈포스",
+        "HubSpot"
+      ],
+      "dataSources": [
+        "고객DB",
+        "매출데이터"
+      ],
+      "callsAgents": [
+        "고객분석 Agent"
+      ],
+      "launchDate": "2026-07-01",
+      "monthlyUsage": "400",
+      "status": "운영"
+    },
+    {
+      "agentName": "SNS 반응 분석 Agent",
+      "dept": "마케팅팀",
+      "owner": "정하늘",
+      "category": "데이터 분석",
+      "description": "캠페인 이후 SNS와 웹 반응을 분석해 요약",
+      "connectedPlatforms": [
+        "GA4",
+        "슬랙"
+      ],
+      "dataSources": [
+        "웹 방문 로그",
+        "캠페인 결과"
+      ],
+      "callsAgents": [],
+      "launchDate": "2026년 5월",
+      "monthlyUsage": "1.5천",
+      "status": "운영"
+    },
+    {
+      "agentName": "마케팅 성과 리포트 Agent",
+      "dept": "마케팅",
+      "owner": null,
+      "category": "문서 작성",
+      "description": "월간 마케팅 성과를 집계해 보고서 초안 작성",
+      "connectedPlatforms": [
+        "Google Analytics",
+        "쉐어포인트"
+      ],
+      "dataSources": [
+        "캠페인 성과 데이터",
+        "웹 방문 로그"
+      ],
+      "callsAgents": [
+        "SNS 반응 분석 Agent"
+      ],
+      "launchDate": null,
+      "monthlyUsage": "많음",
+      "status": "파일럿"
+    },
+    {
+      "agentName": "보도자료 초안 Agent",
+      "dept": "마케팅팀",
+      "owner": "정하늘",
+      "category": "콘텐츠 생성",
+      "description": "신제품 정보를 받아 보도자료 초안 작성",
+      "connectedPlatforms": [
+        "SharePoint",
+        "팀즈"
+      ],
+      "dataSources": [
+        "브랜드 가이드"
+      ],
+      "callsAgents": [],
+      "launchDate": "작년 12월",
+      "monthlyUsage": "30",
+      "status": "중지"
+    }
+  ]
+}

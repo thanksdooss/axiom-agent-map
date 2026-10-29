@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/thanksdooss/axiom-agent-map/ontology/profile-extraction.schema.json",
+  "title": "Agent 기능 프로파일 추출 결과",
+  "description": "LLM이 Agent 설명 원문 하나에서 뽑는 결과. 값은 원문 표기 그대로 쓰고, 표준 개념 ID는 별칭 사전(axiom-ontology.ttl의 skos:prefLabel·altLabel)이 정한다. 사전에 없는 표기는 후보(CANDIDATE)로 남긴다.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent_ref", "capabilities", "systems", "user_groups", "used_by_departments", "unclear"],
+  "properties": {
+    "agent_ref": {
+      "type": "string",
+      "description": "원본의 Agent 식별자. 없으면 파일명과 행 번호."
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Agent가 하는 일. 한 문장에 일이 둘이면 둘로 나눈다(예: 요약하고 할 일을 뽑는다 → 2개).",
+      "items": { "$ref": "#/$defs/capability" }
+    },
+    "systems": {
+      "type": "array",
+      "description": "읽거나 쓰는 시스템·플랫폼(예: Teams, SAP).",
+      "items": { "$ref": "#/$defs/mention" }
+    },
+    "user_groups": {
+      "type": "array",
+      "description": "쓰거나 결과를 받는 사람(예: 상담원, 임원).",
+      "items": { "$ref": "#/$defs/mention" }
+    },
+    "used_by_departments": {
+      "type": "array",
+      "description": "개발 부서와 다른 사용 부서가 원문에 있을 때만.",
+      "items": { "$ref": "#/$defs/mention" }
+    },
+    "unclear": {
+      "type": "array",
+      "description": "무엇을 가리키는지 판단할 수 없었던 표현. 지어내지 말고 여기에 남긴다.",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "mention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "evidence"],
+      "properties": {
+        "text": { "type": "string", "description": "원문 표기 그대로(예: 회의 녹취)." },
+        "evidence": { "type": "string", "description": "원문에서 그대로 복사한 근거 구절." }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "task", "inputs", "outputs", "domain", "trigger", "evidence"],
+      "properties": {
+        "summary": { "type": "string", "description": "'무엇을 어떻게 한다' 한 줄. 예: 회의록을 요약한다." },
+        "task": { "$ref": "#/$defs/mention", "description": "하는 일을 나타내는 원문 표기(예: 정리해 핵심 요약)." },
+        "inputs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/mention" }, "description": "입력 데이터(예: 회의 녹취)." },
+        "outputs": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/mention" }, "description": "산출물(예: 3줄 요약)." },
+        "domain": { "anyOf": [{ "$ref": "#/$defs/mention" }, { "type": "null" }], "description": "업무 영역을 알 수 있는 표기. 없으면 null." },
+        "trigger": { "anyOf": [{ "$ref": "#/$defs/mention" }, { "type": "null" }], "description": "실행 시점 표기(예: 매주 월요일, 접수되면). 없으면 null." },
+        "evidence": { "type": "string", "description": "이 기능의 근거가 되는 원문 구절." }
+      }
+    }
+  }
+}

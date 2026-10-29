@@ -1,0 +1,191 @@
+@prefix ax:   <https://github.com/thanksdooss/axiom-agent-map/ontology#> .
+@prefix axc:  <https://github.com/thanksdooss/axiom-agent-map/concept/> .
+@prefix ex:   <https://github.com/thanksdooss/axiom-agent-map/example/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# 예시 데이터: 가상 Agent 5개 + 신규 등록 1개를 기능 프로파일로 바꾼 결과와 판정.
+# 이름·부서·문장은 모두 지어낸 것이다.
+
+#################################################################
+# 부서 · 시스템 (원본에는 부서만 있고, 시스템은 설명에서 추출)
+#################################################################
+
+ex:dept-sales     a ax:Department ; skos:prefLabel "영업본부"@ko ; skos:altLabel "영업팀"@ko .
+ex:dept-mgmt      a ax:Department ; skos:prefLabel "경영지원팀"@ko .
+ex:dept-legal     a ax:Department ; skos:prefLabel "법무팀"@ko .
+ex:dept-cs        a ax:Department ; skos:prefLabel "고객지원팀"@ko ; skos:altLabel "CS팀"@ko .
+ex:dept-marketing a ax:Department ; skos:prefLabel "마케팅팀"@ko .
+ex:dept-hr        a ax:Department ; skos:prefLabel "인사팀"@ko ; skos:altLabel "HR팀"@ko .
+
+ex:sys-teams      a ax:System ; skos:prefLabel "Microsoft Teams"@ko ; skos:altLabel "Teams"@en, "팀즈"@ko .
+ex:sys-mail       a ax:System ; skos:prefLabel "사내 메일"@ko ; skos:altLabel "메일"@ko, "Outlook"@en .
+ex:sys-callcenter a ax:System ; skos:prefLabel "고객센터 시스템"@ko ; skos:altLabel "콜센터"@ko .
+ex:sys-sns        a ax:System ; skos:prefLabel "SNS 모니터링 도구"@ko ; skos:altLabel "SNS"@en .
+ex:sys-notion     a ax:System ; skos:prefLabel "Notion"@en ; skos:altLabel "노션"@ko .
+
+#################################################################
+# A1 영업 미팅 요약 Agent (영업본부)
+#################################################################
+
+ex:A1 a ax:Agent ;
+    ax:agentName "영업 미팅 요약 Agent" ;
+    ax:description "고객사 미팅이 끝나면 회의록을 정리해 핵심 요약과 후속 할 일을 Teams 영업 채널에 올린다." ;
+    ax:developedBy ex:dept-sales ;
+    ax:integratesWith ex:sys-teams ;
+    ax:serves axc:user-practitioners ;
+    ax:lifecycle "운영" ;
+    ax:hasCapability ex:A1-c1, ex:A1-c2 .
+ex:A1-c1 a ax:Capability ; ax:capabilitySummary "회의록을 요약한다" ;
+    ax:performsTask axc:task-summarize ; ax:consumes axc:data-minutes ; ax:produces axc:out-summary ;
+    ax:inDomain axc:domain-sales ; ax:triggeredBy axc:trigger-event ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "회의록을 정리해 핵심 요약" ; ax:locator "예시 A1 / 설명 1문장" ] .
+ex:A1-c2 a ax:Capability ; ax:capabilitySummary "회의록에서 할 일을 뽑는다" ;
+    ax:performsTask axc:task-extract ; ax:consumes axc:data-minutes ; ax:produces axc:out-structured ;
+    ax:inDomain axc:domain-sales ; ax:triggeredBy axc:trigger-event ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "후속 할 일을 Teams 영업 채널에 올린다" ; ax:locator "예시 A1 / 설명 1문장" ] .
+
+#################################################################
+# B1 주간회의 정리봇 (경영지원팀)
+#################################################################
+
+ex:B1 a ax:Agent ;
+    ax:agentName "주간회의 정리봇" ;
+    ax:description "매주 월요일 회의 녹취를 받아 3줄 요약과 담당자별 할 일을 뽑아 참석자에게 메일로 보낸다." ;
+    ax:developedBy ex:dept-mgmt ;
+    ax:integratesWith ex:sys-mail ;
+    ax:serves axc:user-all-employees ;
+    ax:lifecycle "운영" ;
+    ax:hasCapability ex:B1-c1, ex:B1-c2 .
+ex:B1-c1 a ax:Capability ; ax:capabilitySummary "회의록을 요약한다" ;
+    ax:performsTask axc:task-summarize ; ax:consumes axc:data-minutes ; ax:produces axc:out-summary ;
+    ax:inDomain axc:domain-common ; ax:triggeredBy axc:trigger-scheduled ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "회의 녹취를 받아 3줄 요약" ; ax:locator "예시 B1 / 설명 1문장" ] .
+ex:B1-c2 a ax:Capability ; ax:capabilitySummary "회의록에서 할 일을 뽑는다" ;
+    ax:performsTask axc:task-extract ; ax:consumes axc:data-minutes ; ax:produces axc:out-structured ;
+    ax:inDomain axc:domain-common ; ax:triggeredBy axc:trigger-scheduled ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "담당자별 할 일을 뽑아" ; ax:locator "예시 B1 / 설명 1문장" ] .
+
+#################################################################
+# C1 계약서 위험 조항 검토 Agent (법무팀)
+#################################################################
+
+ex:C1 a ax:Agent ;
+    ax:agentName "계약서 위험 조항 검토 Agent" ;
+    ax:description "계약서 초안에서 위험 조항을 찾아 요약하고 검토 의견 초안을 작성한다." ;
+    ax:developedBy ex:dept-legal ;
+    ax:serves axc:user-practitioners ;
+    ax:lifecycle "운영" ;
+    ax:hasCapability ex:C1-c1, ex:C1-c2 .
+ex:C1-c1 a ax:Capability ; ax:capabilitySummary "계약서 조항을 검토해 의견 초안을 쓴다" ;
+    ax:performsTask axc:task-review-validate ; ax:consumes axc:data-contract ; ax:produces axc:out-draft ;
+    ax:inDomain axc:domain-legal ; ax:triggeredBy axc:trigger-on-request ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "위험 조항을 찾아 … 검토 의견 초안을 작성한다" ; ax:locator "예시 C1 / 설명 1문장" ] .
+ex:C1-c2 a ax:Capability ; ax:capabilitySummary "계약서를 요약한다" ;
+    ax:performsTask axc:task-summarize ; ax:consumes axc:data-contract ; ax:produces axc:out-summary ;
+    ax:inDomain axc:domain-legal ; ax:triggeredBy axc:trigger-on-request ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "위험 조항을 찾아 요약하고" ; ax:locator "예시 C1 / 설명 1문장" ] .
+
+#################################################################
+# D1 VOC 자동 분류 Agent (고객지원팀)
+#################################################################
+
+ex:D1 a ax:Agent ;
+    ax:agentName "VOC 자동 분류 Agent" ;
+    ax:description "고객 문의가 접수되면 유형별로 분류해 담당 부서에 자동 배정한다." ;
+    ax:developedBy ex:dept-cs ;
+    ax:integratesWith ex:sys-callcenter ;
+    ax:serves axc:user-practitioners ;
+    ax:lifecycle "운영" ;
+    ax:hasCapability ex:D1-c1, ex:D1-c2 .
+ex:D1-c1 a ax:Capability ; ax:capabilitySummary "고객 문의를 유형별로 분류한다" ;
+    ax:performsTask axc:task-classify ; ax:consumes axc:data-inquiry ; ax:produces axc:out-label ;
+    ax:inDomain axc:domain-cs ; ax:triggeredBy axc:trigger-event ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "고객 문의가 접수되면 유형별로 분류해" ; ax:locator "예시 D1 / 설명 1문장" ] .
+ex:D1-c2 a ax:Capability ; ax:capabilitySummary "분류 결과로 담당 부서에 배정한다" ;
+    ax:performsTask axc:task-automate ; ax:consumes axc:data-inquiry ; ax:produces axc:out-action ;
+    ax:inDomain axc:domain-cs ; ax:triggeredBy axc:trigger-event ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "담당 부서에 자동 배정한다" ; ax:locator "예시 D1 / 설명 1문장" ] .
+
+#################################################################
+# E1 고객 불만 태깅 봇 (마케팅팀)
+#################################################################
+
+ex:E1 a ax:Agent ;
+    ax:agentName "고객 불만 태깅 봇" ;
+    ax:description "SNS와 콜센터의 불만 글에 주제 태그를 달고, 태그별 건수를 주간 리포트로 정리한다." ;
+    ax:developedBy ex:dept-marketing ;
+    ax:integratesWith ex:sys-sns, ex:sys-callcenter ;
+    ax:serves axc:user-practitioners ;
+    ax:lifecycle "운영" ;
+    ax:hasCapability ex:E1-c1, ex:E1-c2 .
+ex:E1-c1 a ax:Capability ; ax:capabilitySummary "고객 불만 글에 주제 태그를 단다" ;
+    ax:performsTask axc:task-classify ; ax:consumes axc:data-inquiry ; ax:produces axc:out-label ;
+    ax:inDomain axc:domain-marketing ; ax:triggeredBy axc:trigger-scheduled ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "불만 글에 주제 태그를 달고" ; ax:locator "예시 E1 / 설명 1문장" ] .
+ex:E1-c2 a ax:Capability ; ax:capabilitySummary "태그별 건수를 주간 리포트로 만든다" ;
+    ax:performsTask axc:task-analyze-report ; ax:consumes axc:data-inquiry ; ax:produces axc:out-draft ;
+    ax:inDomain axc:domain-marketing ; ax:triggeredBy axc:trigger-scheduled ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "태그별 건수를 주간 리포트로 정리한다" ; ax:locator "예시 E1 / 설명 2문장" ] .
+
+#################################################################
+# NEW1 신규 등록 신청 (인사팀) — 등록 전 중복 점검 대상
+#################################################################
+
+ex:NEW1 a ax:Agent ;
+    ax:agentName "팀 회의 노트 정리 Agent" ;
+    ax:description "팀 회의 내용을 요약해 노션 페이지로 정리한다." ;
+    ax:developedBy ex:dept-hr ;
+    ax:integratesWith ex:sys-notion ;
+    ax:lifecycle "등록 검토 중" ;
+    ax:hasCapability ex:NEW1-c1 .
+ex:NEW1-c1 a ax:Capability ; ax:capabilitySummary "회의록을 요약한다" ;
+    ax:performsTask axc:task-summarize ; ax:consumes axc:data-minutes ; ax:produces axc:out-summary ;
+    ax:inDomain axc:domain-common ; ax:triggeredBy axc:trigger-on-request ;
+    ax:hasEvidence [ a ax:Evidence ; ax:quote "팀 회의 내용을 요약해" ; ax:locator "예시 NEW1 / 설명 1문장" ] .
+
+#################################################################
+# 판정과 군집 (점수는 tools/check_ontology.py가 계산한 값)
+#################################################################
+
+ex:SA-1 a ax:SimilarityAssessment ;
+    ax:comparesAgent ex:A1, ex:B1 ;
+    ax:comparesCapability ex:A1-c1, ex:B1-c1 ;
+    ax:verdict ax:DUPLICATE ; ax:score 0.80 ;
+    ax:matchedFacet ax:performsTask, ax:consumes, ax:produces ;
+    ax:differingFacet ax:inDomain, ax:integratesWith, ax:triggeredBy ;
+    ax:rationale "두 Agent 모두 회의록을 요약하고 할 일을 뽑는다. 결과를 보내는 곳(Teams·메일)과 실행 시점만 다르다." ;
+    ax:method "facet-rule" ; ax:reviewStatus ax:CANDIDATE .
+
+ex:SA-2 a ax:SimilarityAssessment ;
+    ax:comparesAgent ex:A1, ex:C1 ;
+    ax:comparesCapability ex:A1-c1, ex:C1-c2 ;
+    ax:verdict ax:REUSABLE ; ax:score 0.64 ;
+    ax:matchedFacet ax:performsTask, ax:produces ;
+    ax:differingFacet ax:consumes, ax:inDomain ;
+    ax:rationale "요약 기능은 같지만 입력이 회의록과 계약서로 다르다. 같은 요약 엔진을 함께 쓸 수 있다." ;
+    ax:method "facet-rule" ; ax:reviewStatus ax:CANDIDATE .
+
+ex:SA-3 a ax:SimilarityAssessment ;
+    ax:comparesAgent ex:D1, ex:E1 ;
+    ax:comparesCapability ex:D1-c1, ex:E1-c1 ;
+    ax:verdict ax:OVERLAP ; ax:score 0.88 ;
+    ax:matchedFacet ax:performsTask, ax:consumes, ax:produces ;
+    ax:differingFacet ax:inDomain, ax:triggeredBy ;
+    ax:rationale "고객 문의를 유형별로 분류하는 기능은 같다. 다음 단계가 자동 배정(D1)과 주간 리포트(E1)로 다르다." ;
+    ax:method "facet-rule" ; ax:reviewStatus ax:CANDIDATE .
+
+ex:CL-1 a ax:DuplicateCluster ;
+    rdfs:label "회의록 요약·할 일 추출" ;
+    ax:representativeTask axc:task-summarize ;
+    ax:recommendedAction ax:MERGE .
+ex:A1 ax:memberOf ex:CL-1 .
+ex:B1 ax:memberOf ex:CL-1 .
+
+ex:CL-2 a ax:DuplicateCluster ;
+    rdfs:label "고객 문의 분류" ;
+    ax:representativeTask axc:task-classify ;
+    ax:recommendedAction ax:REUSE .
+ex:D1 ax:memberOf ex:CL-2 .
+ex:E1 ax:memberOf ex:CL-2 .

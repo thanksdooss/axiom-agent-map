@@ -1,0 +1,406 @@
+@prefix ax:      <https://github.com/thanksdooss/axiom-agent-map/ontology#> .
+@prefix axc:     <https://github.com/thanksdooss/axiom-agent-map/concept/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+# 엑시옴 Agent 기능 프로파일 온톨로지 — 초안 0.1
+# 목적: 부서별로 흩어진 유사·중복 Agent를 찾고, 왜 비슷한지 설명한다.
+# 원본 데이터(Text·엑셀)에는 Agent → 개발 부서 관계만 있으므로,
+# 나머지 항목은 설명 원문에서 LLM이 원문 표기를 뽑고, 별칭 사전(SKOS)이 표준 개념으로 맞춘다.
+
+<https://github.com/thanksdooss/axiom-agent-map/ontology>
+    a owl:Ontology ;
+    dcterms:title "엑시옴 Agent 기능 프로파일 온톨로지"@ko ;
+    dcterms:created "2026-10-29"^^xsd:date ;
+    owl:versionInfo "0.1 초안 (11/2 멘토링 검토용)" ;
+    rdfs:comment "Agent를 기능 단위(작업 유형·입력 데이터·산출물·업무 영역)로 표현해, 서로 다른 부서의 Agent가 같은 표준 개념에 모이는지로 유사·중복을 판정한다."@ko .
+
+#################################################################
+# 클래스
+#################################################################
+
+ax:Agent a owl:Class ;
+    rdfs:label "Agent"@ko ;
+    skos:definition "사내에 등록된 AI Agent. 등록·비교·검토의 단위."@ko .
+
+ax:Department a owl:Class ;
+    rdfs:label "부서"@ko ;
+    skos:definition "조직 단위. 원본 데이터에는 개발 부서만 들어 있다. 별칭은 skos:altLabel로 둔다."@ko .
+
+ax:Capability a owl:Class ;
+    rdfs:label "기능"@ko ;
+    skos:definition "Agent가 수행하는 기능 하나. 작업 유형·입력 데이터·산출물·업무 영역의 묶음이다. 한 Agent가 기능을 여러 개 가질 수 있어, 부분 중복을 기능 단위로 찾는다."@ko .
+
+ax:System a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "시스템"@ko ;
+    skos:definition "Agent가 읽거나 쓰는 사내외 시스템·플랫폼(예: SAP, Teams). 목록은 데이터에서 추출하며 쌓는다."@ko .
+
+ax:TaskType a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "작업 유형"@ko ;
+    skos:definition "기능이 하는 일의 종류(요약, 분류, 추출 등). 업무 영역과 무관한 가로축."@ko .
+
+ax:BusinessDomain a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "업무 영역"@ko ;
+    skos:definition "기능이 쓰이는 업무 영역(영업, 법무 등). 개발 부서와 다를 수 있다."@ko .
+
+ax:DataObjectType a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "처리 데이터"@ko ;
+    skos:definition "기능의 입력이 되는 정보의 종류(회의록, 고객 문의 등). 특정 DB가 아니라 정보의 종류다."@ko .
+
+ax:OutputType a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "산출물"@ko ;
+    skos:definition "기능이 만들어 내는 결과의 종류(요약문, 분류 결과 등)."@ko .
+
+ax:TriggerMode a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "실행 방식"@ko ;
+    skos:definition "기능이 실행되는 방식(사용자 요청, 정기 실행, 이벤트)."@ko .
+
+ax:UserGroup a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "사용자"@ko ;
+    skos:definition "Agent를 쓰거나 결과를 받는 사람의 집단."@ko .
+
+ax:Evidence a owl:Class ;
+    rdfs:label "근거"@ko ;
+    skos:definition "추출·판정의 근거. 원문 문장과 출처 위치(파일·행·셀·문장 번호)."@ko .
+
+ax:SimilarityAssessment a owl:Class ;
+    rdfs:label "유사도 판정"@ko ;
+    skos:definition "두 Agent(또는 두 기능)의 비교 결과. 판정 유형·점수·일치 항목·차이 항목·근거·검토 상태를 가진다."@ko .
+
+ax:DuplicateCluster a owl:Class ;
+    rdfs:label "중복 군집"@ko ;
+    skos:definition "중복·부분 중복 판정으로 묶인 Agent 모음과 권고 조치."@ko .
+
+ax:AssessmentLabel a owl:Class ; rdfs:label "판정 유형"@ko .
+ax:ReviewStatus    a owl:Class ; rdfs:label "검토 상태"@ko .
+ax:RecommendedAction a owl:Class ; rdfs:label "권고 조치"@ko .
+
+#################################################################
+# 관계 (object property)
+#################################################################
+
+ax:developedBy a owl:ObjectProperty ;
+    rdfs:label "개발 부서"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:Department ;
+    rdfs:comment "원본 데이터에 들어 있는 유일한 관계."@ko .
+
+ax:usedByDepartment a owl:ObjectProperty ;
+    rdfs:label "사용 부서"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:Department ;
+    rdfs:comment "설명 원문에 있을 때만 추출(CANDIDATE)."@ko .
+
+ax:hasCapability a owl:ObjectProperty ;
+    rdfs:label "기능"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:Capability .
+
+ax:performsTask a owl:ObjectProperty ;
+    rdfs:label "작업 유형"@ko ;
+    rdfs:domain ax:Capability ; rdfs:range ax:TaskType .
+
+ax:consumes a owl:ObjectProperty ;
+    rdfs:label "입력 데이터"@ko ;
+    rdfs:domain ax:Capability ; rdfs:range ax:DataObjectType .
+
+ax:produces a owl:ObjectProperty ;
+    rdfs:label "산출물"@ko ;
+    rdfs:domain ax:Capability ; rdfs:range ax:OutputType .
+
+ax:inDomain a owl:ObjectProperty ;
+    rdfs:label "업무 영역"@ko ;
+    rdfs:domain ax:Capability ; rdfs:range ax:BusinessDomain .
+
+ax:triggeredBy a owl:ObjectProperty ;
+    rdfs:label "실행 방식"@ko ;
+    rdfs:domain ax:Capability ; rdfs:range ax:TriggerMode .
+
+ax:integratesWith a owl:ObjectProperty ;
+    rdfs:label "연동 시스템"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:System .
+
+ax:serves a owl:ObjectProperty ;
+    rdfs:label "사용자"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:UserGroup .
+
+ax:isVersionOf a owl:ObjectProperty ;
+    rdfs:label "이전 버전"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:Agent ;
+    rdfs:comment "같은 계열의 이전 버전. 버전 차이는 중복으로 세지 않는다."@ko .
+
+ax:feedsInto a owl:ObjectProperty ;
+    rdfs:label "결과 연계"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:Agent ;
+    rdfs:comment "A의 산출물 종류가 B의 입력 데이터 종류와 같을 때 추론하는 후보 관계. 의존·영향 탐색에 쓴다."@ko .
+
+ax:hasEvidence a owl:ObjectProperty ;
+    rdfs:label "근거"@ko ;
+    rdfs:range ax:Evidence .
+
+ax:comparesAgent a owl:ObjectProperty ;
+    rdfs:label "비교 대상 Agent"@ko ;
+    rdfs:domain ax:SimilarityAssessment ; rdfs:range ax:Agent ;
+    rdfs:comment "판정마다 정확히 2개."@ko .
+
+ax:comparesCapability a owl:ObjectProperty ;
+    rdfs:label "비교 대상 기능"@ko ;
+    rdfs:domain ax:SimilarityAssessment ; rdfs:range ax:Capability .
+
+ax:verdict a owl:ObjectProperty ;
+    rdfs:label "판정 유형"@ko ;
+    rdfs:domain ax:SimilarityAssessment ; rdfs:range ax:AssessmentLabel .
+
+ax:matchedFacet a owl:ObjectProperty ;
+    rdfs:label "일치 항목"@ko ;
+    rdfs:domain ax:SimilarityAssessment ; rdfs:range rdf:Property .
+
+ax:differingFacet a owl:ObjectProperty ;
+    rdfs:label "차이 항목"@ko ;
+    rdfs:domain ax:SimilarityAssessment ; rdfs:range rdf:Property .
+
+ax:reviewStatus a owl:ObjectProperty ;
+    rdfs:label "검토 상태"@ko ;
+    rdfs:range ax:ReviewStatus .
+
+ax:memberOf a owl:ObjectProperty ;
+    rdfs:label "소속 군집"@ko ;
+    rdfs:domain ax:Agent ; rdfs:range ax:DuplicateCluster .
+
+ax:representativeTask a owl:ObjectProperty ;
+    rdfs:label "대표 작업 유형"@ko ;
+    rdfs:domain ax:DuplicateCluster ; rdfs:range ax:TaskType .
+
+ax:recommendedAction a owl:ObjectProperty ;
+    rdfs:label "권고 조치"@ko ;
+    rdfs:domain ax:DuplicateCluster ; rdfs:range ax:RecommendedAction .
+
+#################################################################
+# 속성 (datatype property)
+#################################################################
+
+ax:agentName a owl:DatatypeProperty ; rdfs:label "이름"@ko ; rdfs:domain ax:Agent ; rdfs:range xsd:string .
+ax:description a owl:DatatypeProperty ; rdfs:label "설명 원문"@ko ; rdfs:domain ax:Agent ; rdfs:range xsd:string .
+ax:sourceRef a owl:DatatypeProperty ; rdfs:label "출처"@ko ; rdfs:range xsd:string .
+ax:registeredOn a owl:DatatypeProperty ; rdfs:label "등록일"@ko ; rdfs:domain ax:Agent ; rdfs:range xsd:date .
+ax:lifecycle a owl:DatatypeProperty ; rdfs:label "운영 상태"@ko ; rdfs:domain ax:Agent ; rdfs:range xsd:string ;
+    rdfs:comment "운영 / 개발 중 / 중단"@ko .
+ax:capabilitySummary a owl:DatatypeProperty ; rdfs:label "기능 요약"@ko ; rdfs:domain ax:Capability ; rdfs:range xsd:string ;
+    rdfs:comment "정규화한 한 줄 설명. 예: 회의록을 요약한다."@ko .
+ax:quote a owl:DatatypeProperty ; rdfs:label "근거 문장"@ko ; rdfs:domain ax:Evidence ; rdfs:range xsd:string .
+ax:locator a owl:DatatypeProperty ; rdfs:label "출처 위치"@ko ; rdfs:domain ax:Evidence ; rdfs:range xsd:string .
+ax:confidence a owl:DatatypeProperty ; rdfs:label "추출 신뢰도"@ko ; rdfs:range xsd:decimal .
+ax:score a owl:DatatypeProperty ; rdfs:label "유사도 점수"@ko ; rdfs:domain ax:SimilarityAssessment ; rdfs:range xsd:decimal .
+ax:rationale a owl:DatatypeProperty ; rdfs:label "판정 근거 설명"@ko ; rdfs:domain ax:SimilarityAssessment ; rdfs:range xsd:string .
+ax:method a owl:DatatypeProperty ; rdfs:label "판정 방법"@ko ; rdfs:range xsd:string ;
+    rdfs:comment "facet-rule / embedding / llm-judge / human"@ko .
+ax:reviewedBy a owl:DatatypeProperty ; rdfs:label "검토자"@ko ; rdfs:range xsd:string .
+ax:reviewedAt a owl:DatatypeProperty ; rdfs:label "검토 일시"@ko ; rdfs:range xsd:dateTime .
+ax:defaultSensitivity a owl:DatatypeProperty ; rdfs:label "기본 민감도"@ko ; rdfs:domain ax:DataObjectType ; rdfs:range xsd:string ;
+    rdfs:comment "상 / 중 / 하. 보안 관점 인사이트용(선택)."@ko .
+
+#################################################################
+# 열거값: 판정 유형 · 검토 상태 · 권고 조치
+#################################################################
+
+ax:DUPLICATE a ax:AssessmentLabel ; rdfs:label "중복"@ko ;
+    skos:definition "작업 유형·입력 데이터·산출물이 모두 같은 기능이 있다(상위 개념 1단계 이내 포함). 업무 영역·시스템이 달라도 중복이다."@ko .
+ax:OVERLAP a ax:AssessmentLabel ; rdfs:label "부분 중복"@ko ;
+    skos:definition "기능 여러 개 중 일부만 중복이다."@ko .
+ax:REUSABLE a ax:AssessmentLabel ; rdfs:label "공통화 후보"@ko ;
+    skos:definition "작업 유형은 같지만 입력 데이터가 다르다. 같은 엔진·플랫폼을 함께 쓸 수 있다."@ko .
+ax:COMPLEMENTARY a ax:AssessmentLabel ; rdfs:label "보완"@ko ;
+    skos:definition "한 Agent의 산출물이 다른 Agent의 입력이다. 중복이 아니라 연계 대상."@ko .
+ax:DISTINCT a ax:AssessmentLabel ; rdfs:label "무관"@ko .
+
+ax:SAMPLE a ax:ReviewStatus ; rdfs:label "샘플"@ko ; skos:definition "설계 예시. 검증 전."@ko .
+ax:CANDIDATE a ax:ReviewStatus ; rdfs:label "후보"@ko ; skos:definition "자동 추출·판정 결과. 사람 검토 대기."@ko .
+ax:CONFIRMED a ax:ReviewStatus ; rdfs:label "확정"@ko ; skos:definition "담당자가 근거를 보고 확정."@ko .
+ax:REJECTED a ax:ReviewStatus ; rdfs:label "반려"@ko ; skos:definition "담당자가 반려. 정답셋의 오답 사례로 남긴다."@ko .
+
+ax:MERGE a ax:RecommendedAction ; rdfs:label "통합"@ko .
+ax:REUSE a ax:RecommendedAction ; rdfs:label "공통 엔진 재사용"@ko .
+ax:KEEP a ax:RecommendedAction ; rdfs:label "유지"@ko .
+ax:RETIRE a ax:RecommendedAction ; rdfs:label "폐기 검토"@ko .
+
+#################################################################
+# 표준 개념: 작업 유형 (5개 묶음, 15개)
+#################################################################
+
+axc:TaskTypes a skos:ConceptScheme ; skos:prefLabel "작업 유형"@ko ;
+    skos:hasTopConcept axc:task-understand, axc:task-find, axc:task-judge, axc:task-create, axc:task-act .
+
+axc:task-understand a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:topConceptOf axc:TaskTypes ; skos:prefLabel "이해·정리"@ko .
+axc:task-find       a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:topConceptOf axc:TaskTypes ; skos:prefLabel "찾기·답하기"@ko .
+axc:task-judge      a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:topConceptOf axc:TaskTypes ; skos:prefLabel "판단·분석"@ko .
+axc:task-create     a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:topConceptOf axc:TaskTypes ; skos:prefLabel "만들기"@ko .
+axc:task-act        a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:topConceptOf axc:TaskTypes ; skos:prefLabel "실행·운영"@ko .
+
+axc:task-summarize a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-understand ;
+    skos:prefLabel "요약"@ko ; skos:altLabel "정리"@ko, "요약본"@ko, "다이제스트"@ko, "브리핑"@ko, "핵심 정리"@ko, "summarize"@en ;
+    skos:definition "긴 내용을 짧게 줄인다."@ko .
+axc:task-classify a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-understand ;
+    skos:prefLabel "분류·태깅"@ko ; skos:altLabel "분류"@ko, "태깅"@ko, "라벨링"@ko, "유형 분류"@ko, "트리아지"@ko, "classify"@en ;
+    skos:definition "정해진 범주나 태그를 붙인다."@ko .
+axc:task-extract a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-understand ;
+    skos:prefLabel "정보 추출"@ko ; skos:altLabel "항목 추출"@ko, "데이터 추출"@ko, "파싱"@ko, "할 일 추출"@ko, "extract"@en ;
+    skos:definition "원문에서 정해진 항목을 뽑아 구조화한다."@ko .
+axc:task-translate a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-understand ;
+    skos:prefLabel "번역"@ko ; skos:altLabel "다국어 변환"@ko, "translate"@en .
+axc:task-search-qa a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-find ;
+    skos:prefLabel "검색·질의응답"@ko ; skos:altLabel "문서 검색"@ko, "사내 Q&A"@ko, "FAQ 답변"@ko, "지식 검색"@ko, "RAG"@en ;
+    skos:definition "질문에 맞는 정보를 찾아 답한다."@ko .
+axc:task-converse a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-find ;
+    skos:prefLabel "상담·대화"@ko ; skos:altLabel "챗봇"@ko, "상담 응대"@ko, "대화형 안내"@ko .
+axc:task-recommend a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-find ;
+    skos:prefLabel "추천"@ko ; skos:altLabel "맞춤 추천"@ko, "매칭"@ko, "recommend"@en .
+axc:task-analyze-report a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-judge ;
+    skos:prefLabel "분석·리포팅"@ko ; skos:altLabel "집계"@ko, "현황 분석"@ko, "실적 분석"@ko, "리포트 작성"@ko .
+axc:task-forecast a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-judge ;
+    skos:prefLabel "예측"@ko ; skos:altLabel "수요 예측"@ko, "이탈 예측"@ko, "forecast"@en .
+axc:task-detect-anomaly a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-judge ;
+    skos:prefLabel "이상 탐지"@ko ; skos:altLabel "이상치 탐지"@ko, "부정 탐지"@ko, "리스크 탐지"@ko, "fraud detection"@en .
+axc:task-review-validate a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-judge ;
+    skos:prefLabel "검토·검증"@ko ; skos:altLabel "규정 준수 검사"@ko, "오류 검사"@ko, "품질 검사"@ko, "조항 검토"@ko .
+axc:task-generate-doc a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-create ;
+    skos:prefLabel "문서 생성"@ko ; skos:altLabel "초안 작성"@ko, "보고서 작성"@ko, "메일 작성"@ko, "콘텐츠 생성"@ko .
+axc:task-generate-code a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-create ;
+    skos:prefLabel "코드 생성"@ko ; skos:altLabel "코드 작성"@ko, "SQL 생성"@ko, "테스트 코드 생성"@ko .
+axc:task-automate a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-act ;
+    skos:prefLabel "업무 자동화"@ko ; skos:altLabel "자동 처리"@ko, "워크플로 실행"@ko, "RPA"@en, "자동 배정"@ko, "티켓 생성"@ko .
+axc:task-monitor-alert a ax:TaskType ; skos:inScheme axc:TaskTypes ; skos:broader axc:task-act ;
+    skos:prefLabel "모니터링·알림"@ko ; skos:altLabel "감시"@ko, "경보"@ko, "알림 발송"@ko .
+
+#################################################################
+# 표준 개념: 업무 영역 (14개)
+#################################################################
+
+axc:Domains a skos:ConceptScheme ; skos:prefLabel "업무 영역"@ko .
+
+axc:domain-strategy   a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "경영기획·전략"@ko ; skos:altLabel "경영기획"@ko, "전략"@ko .
+axc:domain-finance    a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "재무·회계"@ko ; skos:altLabel "재무"@ko, "회계"@ko, "경리"@ko .
+axc:domain-hr         a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "인사·HR"@ko ; skos:altLabel "인사"@ko, "채용"@ko, "HR"@en .
+axc:domain-sales      a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "영업"@ko ; skos:altLabel "세일즈"@ko .
+axc:domain-marketing  a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "마케팅"@ko ; skos:altLabel "홍보"@ko, "브랜드"@ko .
+axc:domain-cs         a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "고객지원·CS"@ko ; skos:altLabel "고객센터"@ko, "CS"@en, "콜센터"@ko .
+axc:domain-procurement a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "구매·조달"@ko ; skos:altLabel "구매"@ko, "조달"@ko .
+axc:domain-legal      a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "법무·컴플라이언스"@ko ; skos:altLabel "법무"@ko, "준법"@ko .
+axc:domain-it         a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "IT 운영"@ko ; skos:altLabel "IT"@en, "시스템 운영"@ko .
+axc:domain-security   a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "정보보안"@ko ; skos:altLabel "보안"@ko .
+axc:domain-production a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "생산·설비"@ko ; skos:altLabel "생산"@ko, "설비"@ko, "공정"@ko .
+axc:domain-quality    a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "품질"@ko ; skos:altLabel "품질관리"@ko, "QA"@en .
+axc:domain-rnd        a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "연구개발"@ko ; skos:altLabel "R&D"@en, "개발"@ko .
+axc:domain-common     a ax:BusinessDomain ; skos:inScheme axc:Domains ; skos:topConceptOf axc:Domains ; skos:prefLabel "공통 업무지원"@ko ; skos:altLabel "총무"@ko, "사내 문서"@ko, "회의"@ko .
+
+#################################################################
+# 표준 개념: 처리 데이터 (9개 묶음, 28개)
+#################################################################
+
+axc:DataObjects a skos:ConceptScheme ; skos:prefLabel "처리 데이터"@ko ;
+    skos:hasTopConcept axc:data-customer, axc:data-finance, axc:data-hr, axc:data-document, axc:data-communication,
+                       axc:data-operations, axc:data-external, axc:data-product, axc:data-code .
+
+axc:data-customer      a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "고객 관련"@ko .
+axc:data-finance       a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "거래·재무"@ko .
+axc:data-hr            a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "인사 관련"@ko .
+axc:data-document      a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "문서·지식"@ko .
+axc:data-communication a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "커뮤니케이션"@ko .
+axc:data-operations    a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "운영 데이터"@ko .
+axc:data-external      a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "외부 정보"@ko .
+axc:data-product       a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "상품·구매"@ko .
+axc:data-code          a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:topConceptOf axc:DataObjects ; skos:prefLabel "코드·IT 자산"@ko .
+
+axc:data-inquiry a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-customer ;
+    skos:prefLabel "고객 문의·VOC"@ko ; skos:altLabel "고객 문의"@ko, "고객 불만"@ko, "VOC"@en, "클레임"@ko, "CS 문의"@ko, "불만 글"@ko ; ax:defaultSensitivity "중" .
+axc:data-customer-profile a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-customer ;
+    skos:prefLabel "고객 프로필"@ko ; skos:altLabel "고객 정보"@ko, "CRM 데이터"@ko ; ax:defaultSensitivity "상" .
+axc:data-consult-log a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-customer ;
+    skos:prefLabel "상담 이력"@ko ; skos:altLabel "통화 녹취"@ko, "채팅 로그"@ko, "상담 기록"@ko ; ax:defaultSensitivity "상" .
+axc:data-voucher a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-finance ;
+    skos:prefLabel "전표·회계 데이터"@ko ; skos:altLabel "전표"@ko, "분개"@ko ; ax:defaultSensitivity "중" .
+axc:data-sales-perf a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-finance ;
+    skos:prefLabel "매출·실적"@ko ; skos:altLabel "영업 실적"@ko, "매출 데이터"@ko ; ax:defaultSensitivity "중" .
+axc:data-expense a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-finance ;
+    skos:prefLabel "비용·경비"@ko ; skos:altLabel "경비 청구"@ko, "법인카드 내역"@ko .
+axc:data-invoice a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-finance ;
+    skos:prefLabel "청구서·인보이스"@ko ; skos:altLabel "인보이스"@ko, "세금계산서"@ko .
+axc:data-resume a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-hr ;
+    skos:prefLabel "이력서·지원서"@ko ; skos:altLabel "이력서"@ko, "지원서"@ko ; ax:defaultSensitivity "상" .
+axc:data-hr-record a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-hr ;
+    skos:prefLabel "인사 기록"@ko ; skos:altLabel "인사 정보"@ko, "평가 기록"@ko ; ax:defaultSensitivity "상" .
+axc:data-attendance a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-hr ;
+    skos:prefLabel "근태"@ko ; skos:altLabel "출퇴근 기록"@ko, "휴가 신청"@ko .
+axc:data-payroll a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-hr ;
+    skos:prefLabel "급여"@ko ; skos:altLabel "급여 데이터"@ko ; ax:defaultSensitivity "상" .
+axc:data-contract a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-document ;
+    skos:prefLabel "계약서"@ko ; skos:altLabel "계약 문서"@ko, "NDA"@en ; ax:defaultSensitivity "중" .
+axc:data-policy a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-document ;
+    skos:prefLabel "규정·정책"@ko ; skos:altLabel "사내 규정"@ko, "정책 문서"@ko .
+axc:data-minutes a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-document ;
+    skos:prefLabel "회의록"@ko ; skos:altLabel "회의 녹취"@ko, "회의 기록"@ko, "미팅 노트"@ko .
+axc:data-report a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-document ;
+    skos:prefLabel "보고서"@ko ; skos:altLabel "리포트"@ko, "보고 자료"@ko .
+axc:data-tech-doc a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-document ;
+    skos:prefLabel "기술 문서·매뉴얼"@ko ; skos:altLabel "매뉴얼"@ko, "기술 문서"@ko .
+axc:data-email a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-communication ;
+    skos:prefLabel "이메일"@ko ; skos:altLabel "메일"@ko .
+axc:data-messenger a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-communication ;
+    skos:prefLabel "메신저·채널 대화"@ko ; skos:altLabel "메신저"@ko, "채팅"@ko .
+axc:data-sensor a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-operations ;
+    skos:prefLabel "설비·센서 데이터"@ko ; skos:altLabel "센서 로그"@ko, "설비 데이터"@ko .
+axc:data-system-log a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-operations ;
+    skos:prefLabel "시스템 로그"@ko ; skos:altLabel "로그"@ko, "접속 기록"@ko .
+axc:data-incident a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-operations ;
+    skos:prefLabel "장애·티켓"@ko ; skos:altLabel "장애 이력"@ko, "티켓"@ko, "요청 티켓"@ko .
+axc:data-news a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-external ;
+    skos:prefLabel "뉴스·시장 동향"@ko ; skos:altLabel "뉴스"@ko, "시장 동향"@ko .
+axc:data-competitor a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-external ;
+    skos:prefLabel "경쟁사 정보"@ko .
+axc:data-regulation a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-external ;
+    skos:prefLabel "공시·규제 정보"@ko ; skos:altLabel "규제"@ko, "공시"@ko .
+axc:data-product-info a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-product ;
+    skos:prefLabel "상품 정보"@ko ; skos:altLabel "상품 데이터"@ko, "제품 정보"@ko .
+axc:data-purchase a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-product ;
+    skos:prefLabel "구매 요청·발주"@ko ; skos:altLabel "발주서"@ko, "구매 요청"@ko .
+axc:data-source-code a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-code ;
+    skos:prefLabel "소스 코드"@ko ; skos:altLabel "코드"@ko ; ax:defaultSensitivity "중" .
+axc:data-test-case a ax:DataObjectType ; skos:inScheme axc:DataObjects ; skos:broader axc:data-code ;
+    skos:prefLabel "테스트 케이스"@ko .
+
+#################################################################
+# 표준 개념: 산출물 (11개) · 실행 방식 (3개) · 사용자 (6개)
+#################################################################
+
+axc:Outputs a skos:ConceptScheme ; skos:prefLabel "산출물"@ko .
+axc:out-summary        a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "요약문"@ko ; skos:altLabel "요약"@ko, "3줄 요약"@ko .
+axc:out-label          a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "분류 결과"@ko ; skos:altLabel "라벨"@ko, "태그"@ko, "유형"@ko .
+axc:out-structured     a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "구조화 데이터"@ko ; skos:altLabel "추출 항목"@ko, "할 일 목록"@ko, "표"@ko .
+axc:out-draft          a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "문서 초안"@ko ; skos:altLabel "보고서 초안"@ko, "검토 의견"@ko, "메일 초안"@ko .
+axc:out-answer         a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "답변"@ko ; skos:altLabel "응답"@ko .
+axc:out-alert          a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "알림·경보"@ko ; skos:altLabel "알림"@ko, "경보"@ko .
+axc:out-score          a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "점수·예측값"@ko ; skos:altLabel "예측값"@ko, "위험 점수"@ko .
+axc:out-recommendation a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "추천 목록"@ko .
+axc:out-action         a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "처리 결과"@ko ; skos:altLabel "배정"@ko, "티켓 생성"@ko, "결재 처리"@ko .
+axc:out-translation    a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "번역문"@ko .
+axc:out-code           a ax:OutputType ; skos:inScheme axc:Outputs ; skos:topConceptOf axc:Outputs ; skos:prefLabel "코드"@ko ; skos:altLabel "SQL"@en .
+
+axc:Triggers a skos:ConceptScheme ; skos:prefLabel "실행 방식"@ko .
+axc:trigger-on-request a ax:TriggerMode ; skos:inScheme axc:Triggers ; skos:topConceptOf axc:Triggers ; skos:prefLabel "사용자 요청"@ko ; skos:altLabel "대화형"@ko, "질문할 때"@ko .
+axc:trigger-scheduled  a ax:TriggerMode ; skos:inScheme axc:Triggers ; skos:topConceptOf axc:Triggers ; skos:prefLabel "정기 실행"@ko ; skos:altLabel "매주"@ko, "매일"@ko, "배치"@ko .
+axc:trigger-event      a ax:TriggerMode ; skos:inScheme axc:Triggers ; skos:topConceptOf axc:Triggers ; skos:prefLabel "이벤트 발생 시"@ko ; skos:altLabel "끝나면"@ko, "접수되면"@ko, "등록되면"@ko .
+
+axc:UserGroups a skos:ConceptScheme ; skos:prefLabel "사용자"@ko .
+axc:user-all-employees a ax:UserGroup ; skos:inScheme axc:UserGroups ; skos:topConceptOf axc:UserGroups ; skos:prefLabel "임직원 전체"@ko .
+axc:user-practitioners a ax:UserGroup ; skos:inScheme axc:UserGroups ; skos:topConceptOf axc:UserGroups ; skos:prefLabel "부서 실무자"@ko ; skos:altLabel "담당자"@ko, "상담원"@ko, "영업 담당"@ko .
+axc:user-managers      a ax:UserGroup ; skos:inScheme axc:UserGroups ; skos:topConceptOf axc:UserGroups ; skos:prefLabel "관리자·임원"@ko ; skos:altLabel "임원"@ko, "팀장"@ko, "경영진"@ko .
+axc:user-customers     a ax:UserGroup ; skos:inScheme axc:UserGroups ; skos:topConceptOf axc:UserGroups ; skos:prefLabel "외부 고객"@ko ; skos:altLabel "고객"@ko .
+axc:user-partners      a ax:UserGroup ; skos:inScheme axc:UserGroups ; skos:topConceptOf axc:UserGroups ; skos:prefLabel "협력사"@ko ; skos:altLabel "파트너사"@ko .
+axc:user-developers    a ax:UserGroup ; skos:inScheme axc:UserGroups ; skos:topConceptOf axc:UserGroups ; skos:prefLabel "개발·운영자"@ko ; skos:altLabel "개발자"@ko, "운영자"@ko .
